@@ -13,7 +13,7 @@ import java.util.List;
 public class LinkedList<E> implements ILinkedList<E>{
 
     private Node<E> firstNode;
-
+// Shake
     public LinkedList() { }
 
     public LinkedList(List<E> list) {
@@ -29,11 +29,7 @@ public class LinkedList<E> implements ILinkedList<E>{
     }
 
     private boolean exists(Node node, E key) {
-        if (node.getKey() == key) {
-            return true;
-        } else {
-            return (node.getNextNode() != null) && exists(node.getNextNode(), key);
-        }
+        return node.getKey() == key || (node.getNextNode() != null) && exists(node.getNextNode(), key);
     }
 
     private void prioritizeKey(E key) {
