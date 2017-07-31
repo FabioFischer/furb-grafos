@@ -1,7 +1,7 @@
 
 /**
  **   FURB - Bacharelado em Ciências da Computação
- **   Computação Gráfica
+ **   Teoria dos Grafos
  **   Trabalho 01 - Questão 01
  **
  **   Fábio Luiz Fischer
