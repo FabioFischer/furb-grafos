@@ -18,8 +18,16 @@ public class App {
         ArrayList<Character> input;
         Stack<Character> stack;
 
+        ArrayList<Character> validKeys = new ArrayList<>();
+
+        // Caracteres válidos
+        validKeys.add('A');
+        validKeys.add('B');
+
+        // Caracter separador
         char separator = 'C';
 
+        // Cenários
         String[] cases = new String[]{
                 "AAABBABABBACABBABABBAAA",
                 "AAAABABAAAACABBABABBAAA",
@@ -27,6 +35,7 @@ public class App {
                 "AAA",
                 "CCC",
                 "aAbACAbAa",
+                "AABACABAA",
                 "ACa",
                 "aca"};
 
@@ -41,8 +50,7 @@ public class App {
             stack = new Stack<>(input);
 
             // Realiza verificação.
-            // Define "C" como digito separador.
-            System.out.println("Input " + cases[i] + ((stack.verifyInput(separator)) ? " é válido!" : " não é valido!"));
+            System.out.println("Input " + cases[i] + ((stack.verifyInput(separator, validKeys)) ? " é válido!" : " não é valido!"));
         }
     }
 }

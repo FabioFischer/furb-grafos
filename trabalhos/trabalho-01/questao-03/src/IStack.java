@@ -1,3 +1,4 @@
+import java.util.List;
 
 /**
  **   FURB - Bacharelado em Ciências da Computação
@@ -13,5 +14,5 @@ public interface IStack<E> {
     void push(E key);
     Stack<E> invertStack();
     boolean isEmpty();
-    boolean verifyInput(E separator);
+    boolean verifyInput(E separator, List<E> validKeys);
 }

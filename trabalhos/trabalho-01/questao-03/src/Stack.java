@@ -106,12 +106,8 @@ public class Stack<E> implements IStack<E>, Cloneable {
         this.setSize(this.getSize() + 1);
     }
 
-    /**
-     **     y C x
-     **     x = inverted y
-     **/
     @Override
-    public boolean verifyInput(E separator) {
+    public boolean verifyInput(E separator, List<E> validKeys) {
         if (!this.isEmpty()) {
             try {
                 Stack<E> clone = (Stack<E>)this.clone();
@@ -123,7 +119,9 @@ public class Stack<E> implements IStack<E>, Cloneable {
                 while ((curr = clone.pop()) != null) {
                     if (curr.getKey() == separator) {
                         sepCount++;
-                    } else if (sepCount == 0){
+                    } else if (!validKeys.contains(curr.getKey())) {
+                        return false;
+                    } else if (sepCount == 0) {
                         s1.push(curr.getKey());
                     } else {
                         s2.push(curr.getKey());
