@@ -60,6 +60,16 @@ public class BinaryTree implements IBinaryTree {
     }
 
     @Override
+    public int sumPiles() {
+        return 0;
+    }
+
+    @Override
+    public int sumPile(int pile) {
+        return 0;
+    }
+
+    @Override
     public int minValue() {
         if (!this.isEmpty()) {
             return this.getRoot().getMinValue();
@@ -108,7 +118,7 @@ public class BinaryTree implements IBinaryTree {
 
     private String toStringPreOrder(Node node) {
         if (node != null) {
-            return ("| " + node.getKey() + toStringPostOrder(node.getLeftNode()) + toStringPostOrder(node.getRightNode()));
+            return ("| " + node.getKey() + toStringPreOrder(node.getLeftNode()) + toStringPreOrder(node.getRightNode()));
         } else {
             return "";
         }
@@ -124,7 +134,7 @@ public class BinaryTree implements IBinaryTree {
 
     private String toStringInOrder(Node node) {
         if (node != null) {
-            return toStringPostOrder(node.getLeftNode()) + ("| " + node.getKey() + toStringPostOrder(node.getRightNode()));
+            return toStringInOrder(node.getLeftNode()) + ("| " + node.getKey() + ":" + node.getPile() + toStringInOrder(node.getRightNode()));
         } else {
             return "";
         }

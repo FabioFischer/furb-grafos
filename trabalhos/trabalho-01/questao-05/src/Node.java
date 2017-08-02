@@ -13,6 +13,8 @@ public class Node {
     private Node leftNode;
     private Node rightNode;
 
+    private int pile;
+
     public static final class NodeDirection {
         final static NodeDirection LEFT_NODE = new NodeDirection();
         final static NodeDirection RIGHT_NODE = new NodeDirection();
@@ -20,6 +22,7 @@ public class Node {
 
     public Node(int key) {
         this.setKey(key);
+        this.setPile(0);
     }
 
     public int getKey() {
@@ -45,12 +48,14 @@ public class Node {
     public void addChild(Node node) {
         if (node.getKey() <= this.getKey()) {
             if (this.getLeftNode() == null) {
+                node.setPile(this.getPile() - 1);
                 this.setLeftNode(node);
             } else {
                 this.getLeftNode().addChild(node);
             }
         } else {
             if (this.getRightNode() == null) {
+                node.setPile(this.getPile() + 1);
                 this.setRightNode(node);
             } else {
                 this.getRightNode().addChild(node);
@@ -61,11 +66,13 @@ public class Node {
     public boolean addChild(Node node, NodeDirection direction) {
         if (direction.equals(NodeDirection.LEFT_NODE)) {
             if (this.getLeftNode() == null) {
+                node.setPile(this.getPile() - 1);
                 this.setLeftNode(node);
                 return true;
             }
         } else if (direction.equals(NodeDirection.RIGHT_NODE)) {
             if (this.getRightNode() == null) {
+                node.setPile(this.getPile() + 1);
                 this.setRightNode(node);
                 return true;
             }
@@ -119,5 +126,13 @@ public class Node {
 
     public void setRightNode(Node rightNode) {
         this.rightNode = rightNode;
+    }
+
+    public int getPile() {
+        return pile;
+    }
+
+    public void setPile(int pile) {
+        this.pile = pile;
     }
 }

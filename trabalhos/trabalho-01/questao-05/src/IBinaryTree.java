@@ -12,9 +12,9 @@ public interface IBinaryTree{
     void add(Node node);
     void add(Node parent, Node node, Node.NodeDirection direction);
     void remove(int key);
+    int sumPile(int pile);
+    int sumPiles();
     int size();
-    int height();
-    int width();
     int minValue();
     int maxValue();
     String toStringPreOrder();

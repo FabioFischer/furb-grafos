@@ -52,6 +52,5 @@ public class App {
 
         System.out.println(tree.toStringInOrder());
         System.out.println(tree.size());
-        System.out.println("\n");
     }
 }
