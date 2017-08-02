@@ -1,8 +1,22 @@
 
+/**
+ **   FURB - Bacharelado em Ciências da Computação
+ **   Teoria dos Grafos
+ **   Trabalho 01 - Questão 04
+ **
+ **   Fábio Luiz Fischer
+ *
+ **/
+
 public class Node {
     private int key;
     private Node leftNode;
     private Node rightNode;
+
+    public static final class NodeDirection {
+        final static NodeDirection LEFT_NODE = new NodeDirection();
+        final static NodeDirection RIGHT_NODE = new NodeDirection();
+    }
 
     public Node(int key) {
         this.setKey(key);
@@ -42,6 +56,21 @@ public class Node {
                 this.getRightNode().addChild(node);
             }
         }
+    }
+
+    public boolean addChild(Node node, NodeDirection direction) {
+        if (direction.equals(NodeDirection.LEFT_NODE)) {
+            if (this.getLeftNode() == null) {
+                this.setLeftNode(node);
+                return true;
+            }
+        } else if (direction.equals(NodeDirection.RIGHT_NODE)) {
+            if (this.getRightNode() == null) {
+                this.setRightNode(node);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void remove(int key) {

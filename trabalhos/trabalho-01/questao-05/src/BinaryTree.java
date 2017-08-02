@@ -1,6 +1,13 @@
+
 /**
- * Created by fabio.fischer on 28/07/2017.
- */
+ **   FURB - Bacharelado em Ciências da Computação
+ **   Teoria dos Grafos
+ **   Trabalho 01 - Questão 05
+ **
+ **   Fábio Luiz Fischer
+ *
+ **/
+
 public class BinaryTree implements IBinaryTree {
     private Node root;
 
@@ -15,17 +22,26 @@ public class BinaryTree implements IBinaryTree {
     }
 
     @Override
-    public void add(int key) {
+    public void add(Node node) {
         if (!this.isEmpty()) {
-            this.getRoot().addChild(new Node(key));
+            this.getRoot().addChild(node);
         } else {
-            this.setRoot(new Node(key));
+            this.setRoot(node);
         }
     }
 
-    private void add(int [] keys) {
+    @Override
+    public void add(Node parent, Node node, Node.NodeDirection direction) {
+        if (!this.isEmpty()) {
+            if (!parent.addChild(node, direction)) {
+                throw new IllegalArgumentException("Não é possível adicionar um filho a este nó na direção especificada.");
+            }
+        }
+    }
+
+    private void add(int[] keys) {
         for (int key : keys) {
-            this.add(key);
+            this.add(new Node(key));
         }
     }
 
@@ -64,6 +80,16 @@ public class BinaryTree implements IBinaryTree {
         if (this.getRoot() != null) {
             return 1 + this.countChildren(this.getRoot());
         }
+        return 0;
+    }
+
+    @Override
+    public int height() {
+        return 0;
+    }
+
+    @Override
+    public int width() {
         return 0;
     }
 
