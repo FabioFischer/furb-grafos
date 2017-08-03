@@ -59,6 +59,14 @@ public class BinaryTree implements IBinaryTree {
         }
     }
 
+    private int getLenght() {
+        return 0;
+    }
+
+    private int getLenght(Node node, int maxValue) {
+        return 0;
+    }
+
     @Override
     public int sumPiles() {
         return 0;
@@ -94,12 +102,12 @@ public class BinaryTree implements IBinaryTree {
     }
 
     @Override
-    public int height() {
+    public int getHeight() {
         return 0;
     }
 
     @Override
-    public int width() {
+    public int getWidth() {
         return 0;
     }
 
