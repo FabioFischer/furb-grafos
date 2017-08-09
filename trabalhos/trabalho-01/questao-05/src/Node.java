@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 
 /**
  **   FURB - Bacharelado em Ciências da Computação
  **   Teoria dos Grafos
- **   Trabalho 01 - Questão 04
+ **   Trabalho 01 - Questão 05
  **
  **   Fábio Luiz Fischer
  *
@@ -13,7 +14,7 @@ public class Node {
     private Node leftNode;
     private Node rightNode;
 
-    private int pile;
+    private Pile pile;
 
     public static final class NodeDirection {
         final static NodeDirection LEFT_NODE = new NodeDirection();
@@ -22,7 +23,6 @@ public class Node {
 
     public Node(int key) {
         this.setKey(key);
-        this.setPile(0);
     }
 
     public int getKey() {
@@ -45,34 +45,74 @@ public class Node {
         }
     }
 
-    public void addChild(Node node) {
+    public void addChild(ArrayList<Pile> piles, Node node) {
         if (node.getKey() <= this.getKey()) {
             if (this.getLeftNode() == null) {
-                node.setPile(this.getPile() - 1);
+                Pile pile = (this.getPile(piles, this.getPile().getId() - 1));
+                if (pile == null) {
+                    pile = new Pile(this.getPile().getId() - 1);
+                    pile.add(node);
+                    piles.add(pile);
+
+                    node.setPile(pile);
+                } else {
+                    pile.add(node);
+                    node.setPile(pile);
+                }
                 this.setLeftNode(node);
             } else {
-                this.getLeftNode().addChild(node);
+                this.getLeftNode().addChild(piles, node);
             }
         } else {
             if (this.getRightNode() == null) {
-                node.setPile(this.getPile() + 1);
+                Pile pile = (this.getPile(piles, this.getPile().getId() + 1));
+                if (pile == null) {
+                    pile = new Pile(this.getPile().getId() + 1);
+                    pile.add(node);
+                    piles.add(pile);
+
+                    node.setPile(pile);
+                } else {
+                    pile.add(node);
+                    node.setPile(pile);
+                }
                 this.setRightNode(node);
             } else {
-                this.getRightNode().addChild(node);
+                this.getRightNode().addChild(piles, node);
             }
         }
     }
 
-    public boolean addChild(Node node, NodeDirection direction) {
+    public boolean addChild(ArrayList<Pile> piles, Node node, NodeDirection direction) {
         if (direction.equals(NodeDirection.LEFT_NODE)) {
             if (this.getLeftNode() == null) {
-                node.setPile(this.getPile() - 1);
+                Pile pile = (this.getPile(piles, this.getPile().getId() - 1));
+                if (pile == null) {
+                    pile = new Pile(this.getPile().getId() - 1);
+                    pile.add(node);
+                    piles.add(pile);
+
+                    node.setPile(pile);
+                } else {
+                    pile.add(node);
+                    node.setPile(pile);
+                }
                 this.setLeftNode(node);
                 return true;
             }
         } else if (direction.equals(NodeDirection.RIGHT_NODE)) {
             if (this.getRightNode() == null) {
-                node.setPile(this.getPile() + 1);
+                Pile pile = (this.getPile(piles, this.getPile().getId() + 1));
+                if (pile == null) {
+                    pile = new Pile(this.getPile().getId() + 1);
+                    pile.add(node);
+                    piles.add(pile);
+
+                    node.setPile(pile);
+                } else {
+                    pile.add(node);
+                    node.setPile(pile);
+                }
                 this.setRightNode(node);
                 return true;
             }
@@ -103,7 +143,6 @@ public class Node {
 
             } else if (parent.getRightNode() == this) {
                 parent.setRightNode((this.getLeftNode() != null) ? this.getLeftNode() : this.getRightNode());
-
             }
         }
     }
@@ -128,11 +167,19 @@ public class Node {
         this.rightNode = rightNode;
     }
 
-    public int getPile() {
+    private Pile getPile(ArrayList<Pile> piles, int id) {
+        for (Pile pile: piles) {
+            if (pile.getId() == id)
+                return pile;
+        }
+        return null;
+    }
+
+    public Pile getPile() {
         return pile;
     }
 
-    public void setPile(int pile) {
+    public void setPile(Pile pile) {
         this.pile = pile;
     }
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  **   FURB - Bacharelado em Ciências da Computação
@@ -10,11 +11,15 @@
 
 public class BinaryTree implements IBinaryTree {
     private Node root;
+    private ArrayList<Pile> piles;
 
-    public BinaryTree() {}
+    public BinaryTree() {
+        this.setPiles(new ArrayList<>());
+    }
 
     public BinaryTree(int[] keys) {
         this.add(keys);
+        this.setPiles(new ArrayList<>());
     }
 
     public boolean isEmpty() {
@@ -24,16 +29,20 @@ public class BinaryTree implements IBinaryTree {
     @Override
     public void add(Node node) {
         if (!this.isEmpty()) {
-            this.getRoot().addChild(node);
+            this.getRoot().addChild(this.getPiles(), node);
         } else {
+            Pile pile = new Pile(0);
+            pile.add(node);
+            node.setPile(pile);
             this.setRoot(node);
+            this.getPiles().add(pile);
         }
     }
 
     @Override
     public void add(Node parent, Node node, Node.NodeDirection direction) {
         if (!this.isEmpty()) {
-            if (!parent.addChild(node, direction)) {
+            if (!parent.addChild(this.getPiles(), node, direction)) {
                 throw new IllegalArgumentException("Não é possível adicionar um filho a este nó na direção especificada.");
             }
         }
@@ -59,40 +68,6 @@ public class BinaryTree implements IBinaryTree {
         }
     }
 
-    private int getLenght() {
-        return 0;
-    }
-
-    private int getLenght(Node node, int maxValue) {
-        return 0;
-    }
-
-    @Override
-    public int sumPiles() {
-        return 0;
-    }
-
-    @Override
-    public int sumPile(int pile) {
-        return 0;
-    }
-
-    @Override
-    public int minValue() {
-        if (!this.isEmpty()) {
-            return this.getRoot().getMinValue();
-        }
-        return 0;
-    }
-
-    @Override
-    public int maxValue() {
-        if (!this.isEmpty()) {
-            return this.getRoot().getMaxValue();
-        }
-        return 0;
-    }
-
     @Override
     public int size() {
         if (this.getRoot() != null) {
@@ -102,13 +77,15 @@ public class BinaryTree implements IBinaryTree {
     }
 
     @Override
-    public int getHeight() {
-        return 0;
-    }
+    public String printSum() {
+        this.getPiles().sort((o1, o2) -> (o1.getId() < o2.getId()) ? -1 : ((o1.getId() > o2.getId()) ? +1 : 0));
+        StringBuilder str = new StringBuilder();
 
-    @Override
-    public int getWidth() {
-        return 0;
+        for (Pile pile: this.getPiles()) {
+            str.append("\nPilha ").append(pile.getId()).append(": ").append(pile.getSum());
+        }
+
+        return str.toString();
     }
 
     private int countChildren(Node node) {
@@ -116,7 +93,6 @@ public class BinaryTree implements IBinaryTree {
                 + ((node.getRightNode() == null) ? 0 : countChildren(node.getRightNode()) + 1);
     }
 
-    @Override
     public String toStringPreOrder() {
         if (!this.isEmpty()) {
             return toStringPreOrder(this.getRoot());
@@ -126,13 +102,12 @@ public class BinaryTree implements IBinaryTree {
 
     private String toStringPreOrder(Node node) {
         if (node != null) {
-            return ("| " + node.getKey() + toStringPreOrder(node.getLeftNode()) + toStringPreOrder(node.getRightNode()));
+            return ("| " + node.getKey() + ":" + node.getPile().getId() + toStringPreOrder(node.getLeftNode()) + toStringPreOrder(node.getRightNode()));
         } else {
             return "";
         }
     }
 
-    @Override
     public String toStringInOrder() {
         if (!this.isEmpty()) {
             return toStringInOrder(this.getRoot());
@@ -142,13 +117,12 @@ public class BinaryTree implements IBinaryTree {
 
     private String toStringInOrder(Node node) {
         if (node != null) {
-            return toStringInOrder(node.getLeftNode()) + ("| " + node.getKey() + ":" + node.getPile() + toStringInOrder(node.getRightNode()));
+            return toStringInOrder(node.getLeftNode()) + ("| " + node.getKey() + ":" + node.getPile().getId() + toStringInOrder(node.getRightNode()));
         } else {
             return "";
         }
     }
 
-    @Override
     public String toStringPostOrder() {
         if (!this.isEmpty()) {
             return toStringPostOrder(this.getRoot());
@@ -158,10 +132,18 @@ public class BinaryTree implements IBinaryTree {
 
     private String toStringPostOrder(Node node) {
         if (node != null) {
-            return toStringPostOrder(node.getLeftNode()) + toStringPostOrder(node.getRightNode()) + ("| " + node.getKey());
+            return toStringPostOrder(node.getLeftNode()) + toStringPostOrder(node.getRightNode()) + ("| " + node.getKey() + ":" + node.getPile().getId());
         } else {
             return "";
         }
+    }
+
+    public ArrayList<Pile> getPiles() {
+        return piles;
+    }
+
+    public void setPiles(ArrayList<Pile> piles) {
+        this.piles = piles;
     }
 
     public Node getRoot() {

@@ -36,21 +36,25 @@
 
 public class App {
     public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-
+        BinaryTree t1 = new BinaryTree();
         Node n1 = new Node(5), n2 = new Node(7), n3 = new Node(3), n4 = new Node(6);
 
-        tree.add(n1);
+        // Insere raiz
+        t1.add(n1);
         try {
-            tree.add(n1, n2, Node.NodeDirection.LEFT_NODE);
-            tree.add(n1, n3, Node.NodeDirection.RIGHT_NODE);
-            tree.add(n2, n4, Node.NodeDirection.RIGHT_NODE);
-            tree.add(n3, n4, Node.NodeDirection.LEFT_NODE);
+            // Insere folha em relação ao pai e a direção
+            t1.add(n1, n2, Node.NodeDirection.LEFT_NODE);
+            t1.add(n1, n3, Node.NodeDirection.RIGHT_NODE);
+            t1.add(n2, n4, Node.NodeDirection.RIGHT_NODE);
+            t1.add(n3, n4, Node.NodeDirection.LEFT_NODE);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(tree.toStringInOrder());
-        System.out.println(tree.size());
+        System.out.println("============================================");
+        System.out.println(t1.toStringInOrder());
+        System.out.println("============================================");
+        System.out.println(t1.printSum());
+        System.out.println("\n============================================");
     }
 }
