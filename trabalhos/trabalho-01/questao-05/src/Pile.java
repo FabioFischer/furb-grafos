@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
 /**
- **   FURB - Bacharelado em Ciências da Computação
- **   Teoria dos Grafos
- **   Trabalho 01 - Questão 05
- **
- **   Fábio Luiz Fischer
- *
+ * *   FURB - Bacharelado em Ciências da Computação
+ * *   Teoria dos Grafos
+ * *   Trabalho 01 - Questão 05
+ * *
+ * *   Fábio Luiz Fischer
  **/
 
 public class Pile {
@@ -27,7 +26,7 @@ public class Pile {
     public int getSum() {
         int result = 0;
 
-        for (Node node: this.getNodes()) {
+        for (Node node : this.getNodes()) {
             result += node.getKey();
         }
         return result;

@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
 /**
- **   FURB - Bacharelado em Ciências da Computação
- **   Teoria dos Grafos
- **   Trabalho 01 - Questão 05
- **
- **   Fábio Luiz Fischer
- *
+ * *   FURB - Bacharelado em Ciências da Computação
+ * *   Teoria dos Grafos
+ * *   Trabalho 01 - Questão 05
+ * *
+ * *   Fábio Luiz Fischer
  **/
 
 public class Node {
@@ -168,7 +167,7 @@ public class Node {
     }
 
     private Pile getPile(ArrayList<Pile> piles, int id) {
-        for (Pile pile: piles) {
+        for (Pile pile : piles) {
             if (pile.getId() == id)
                 return pile;
         }

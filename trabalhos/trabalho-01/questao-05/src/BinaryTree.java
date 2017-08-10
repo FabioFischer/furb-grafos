@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
 /**
- **   FURB - Bacharelado em Ciências da Computação
- **   Teoria dos Grafos
- **   Trabalho 01 - Questão 05
- **
- **   Fábio Luiz Fischer
- *
+ * *   FURB - Bacharelado em Ciências da Computação
+ * *   Teoria dos Grafos
+ * *   Trabalho 01 - Questão 05
+ * *
+ * *   Fábio Luiz Fischer
  **/
 
 public class BinaryTree implements IBinaryTree {
@@ -81,7 +80,7 @@ public class BinaryTree implements IBinaryTree {
         this.getPiles().sort((o1, o2) -> (o1.getId() < o2.getId()) ? -1 : ((o1.getId() > o2.getId()) ? +1 : 0));
         StringBuilder str = new StringBuilder();
 
-        for (Pile pile: this.getPiles()) {
+        for (Pile pile : this.getPiles()) {
             str.append("\nPilha ").append(pile.getId()).append(": ").append(pile.getSum());
         }
 
