@@ -1,7 +1,12 @@
 
 /**
- * Created by fabio.fischer on 28/07/2017.
- */
+ *   FURB - Bacharelado em Ciências da Computação
+ *   Teoria dos Grafos
+ *   Trabalho 02 - Questão 01
+ *
+ *   Fábio Luiz Fischer
+ *
+**/
 
 public class Aresta<E> {
     private E valor;

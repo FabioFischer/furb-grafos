@@ -1,12 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *   FURB - Bacharelado em Ciências da Computação
+ *   Teoria dos Grafos
+ *   Trabalho 02 - Questão 01
+ *
+ *   Fábio Luiz Fischer
+ *
+ **/
+
 public class Grafo<T, E> {
     private List<Vertice<T, E>> vertices;
 
     public Grafo() {
         this.setVertices(new ArrayList<>());
     }
+
+    
 
     @Override
     public String toString() {
