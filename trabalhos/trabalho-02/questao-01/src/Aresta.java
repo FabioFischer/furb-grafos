@@ -8,20 +8,20 @@
  *
 **/
 
-public class Aresta<E> {
-    private E valor;
+public class Aresta {
+    private int valor;
     private Vertice origem;
     private Vertice destino;
 
-    public Aresta(E key) {
+    public Aresta(int key) {
         this.setValor(key);
     }
 
-    public E getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(E valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 

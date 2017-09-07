@@ -10,67 +10,119 @@ import java.util.List;
  *
  **/
 
-public class Grafo<T, E> {
-    private List<Vertice<T, E>> vertices;
+public class Grafo {
+    private List<Vertice> vertices;
 
-    public Grafo() {
+    public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
         this.setVertices(new ArrayList<>());
+        this.addMatrizAdjacencia(matrizAdj);
     }
-
-    
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder("-");
 
-        for (int i = 0; i < this.getVertices().size(); i++) {
-            for (int j = 0; j < this.getVertices().size(); j++) {
+        if (!this.getVertices().isEmpty()) {
+            int[][] matrizAdj = this.getMatrizAdjacencia();
 
+            for (int i = 0; i < matrizAdj.length; i++) {
+                builder.append("\n");
+                for (int j = 0; j < matrizAdj[i].length; j++) {
+                    builder.append(matrizAdj[i][j] + (((j + 1) < matrizAdj[i].length) ? ", " : ""));
+                }
+                builder.append("\n-");
             }
         }
 
         return builder.toString();
     }
 
-    public int[][] getAdjascencyMatrix() {
-        int[][] adjMatrix = new int[this.getVertices().size()][this.getVertices().size()];
+    public int[][] getMatrizAdjacencia() {
+        int[][] matrizAdj = new int[this.getVertices().size()][this.getVertices().size()];
 
-        for (int i = 0; i < this.getVertices().size(); i++) {
-            for (int j = 0; j < this.getVertices().size(); j++) {
-                // TODO
+        for (int i = 0; i < matrizAdj.length; i++) {
+            for (int j = 0; j < matrizAdj[i].length; j++) {
+                Aresta a = this.getAresta(i, j);
+                matrizAdj[i][j] = (a != null) ? a.getValor() : 0;
             }
         }
-        return adjMatrix;
+
+        return matrizAdj;
     }
 
-    public void addAresta(E key, T source, T destination) {
-        this.addAresta(key, this.getVertice(source), this.getVertice(destination));
-    }
-
-    public void addAresta(E key, Vertice<T, E> source, Vertice<T, E> destination) {
-        Aresta<E> edge = new Aresta<>(key);
-
-        edge.setOrigem(source);
-        edge.setDestino(source);
-
-        source.getArestas().add(edge);
-        destination.getArestas().add(edge);
-    }
-
-    public Vertice<T, E> getVertice(T key) {
-        if (!this.getVertices().isEmpty()) {
-            for (Vertice<T, E> node : this.getVertices()) {
-                if (node.getValor() == key)
-                    return node;
+    private void addMatrizAdjacencia(int[][] matrizAdj) {
+        if (this.getVertices().isEmpty()) {
+            for (int i = 0; i < matrizAdj.length; i++) {
+                if (matrizAdj[i].length != matrizAdj.length) {
+                    new IllegalArgumentException("Número de colunas deve ser igual ao número de linhas");
+                }
+                for (int j = 0; j < matrizAdj[i].length; j++) {
+                    if (matrizAdj[i][j] > 0) {
+                        this.addAresta(matrizAdj[i][j], i, j);
+                    }
+                }
             }
-        } return null;
+        }
     }
 
-    public List<Vertice<T, E>> getVertices() {
+    private void addAresta(int valor, int origem, int destino) {
+        this.addAresta(valor, this.verificaVertice(origem), this.verificaVertice(destino));
+    }
+
+    private void addAresta(int valor, Vertice origem, Vertice destino) {
+        Aresta a = new Aresta(valor);
+
+        a.setOrigem(origem);
+        a.setDestino(origem);
+
+        origem.getArestas().add(a);
+        destino.getArestas().add(a);
+    }
+
+    private Aresta getAresta(int origem, int destino) {
+        return this.getAresta(this.getVertice(origem), this.getVertice(destino));
+    }
+
+    private Aresta getAresta(Vertice origem, Vertice destino) {
+        if (origem != null && destino != null) {
+            for (Vertice v : this.getVertices()) {
+                if (v == origem) {
+                    for (Aresta a : v.getArestas()) {
+                        if (a.getDestino() == destino)
+                            return a;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private Vertice getVertice(int valor) {
+        if (!this.getVertices().isEmpty()) {
+            for (Vertice v : this.getVertices()) {
+                if (v.getValor() == valor)
+                    return v;
+            }
+        }
+        return null;
+    }
+
+    private Vertice verificaVertice(int valor) {
+        Vertice v = this.getVertice(valor);
+
+        if (v == null) {
+            v = new Vertice(valor);
+            this.getVertices().add(v);
+        }
+
+        return v;
+    }
+
+    public List<Vertice> getVertices() {
         return vertices;
     }
 
-    public void setVertices(List<Vertice<T, E>> vertices) {
+    private void setVertices(List<Vertice> vertices) {
         this.vertices = vertices;
     }
 }

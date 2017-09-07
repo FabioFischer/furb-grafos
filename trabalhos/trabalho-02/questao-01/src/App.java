@@ -39,20 +39,14 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Grafo<String, Integer> grafo = new Grafo<>();
+        int[][] matrizAdj = {
+                {0, 1, 0, 1},
+                {1, 0, 1, 0},
+                {0, 1, 1, 1},
+                {0, 0, 1, 0}};
 
-        grafo.getVertices().add(new Vertice<>("A"));
-        grafo.getVertices().add(new Vertice<>("B"));
-        grafo.getVertices().add(new Vertice<>("C"));
-        grafo.getVertices().add(new Vertice<>("D"));
+        Grafo g = new Grafo(matrizAdj);
 
-        grafo.addAresta(3, "A", "B");
-        grafo.addAresta(5, "A", "C");
-        grafo.addAresta(7, "B", "C");
-        grafo.addAresta(1, "C", "C");
-        grafo.addAresta(5, "D", "C");
-        grafo.addAresta(2, "D", "A");
-
-        System.out.println(grafo.toString());
+        System.out.println(g.toString());
     }
 }

@@ -11,38 +11,38 @@ import java.util.List;
  *
  **/
 
-public class Vertice<T, E> {
-    private T valor;
-    private List<Aresta<E>> arestas;
+public class Vertice {
+    private int valor;
+    private List<Aresta> arestas;
 
-    public Vertice(T key) {
+    public Vertice(int valor) {
         this.setArestas(new ArrayList<>());
-        this.setValor(key);
+        this.setValor(valor);
     }
 
-    public List<Vertice> getConnectedNodes() {
-        List<Vertice> conn = new ArrayList<>();
+    public List<Vertice> getAdjacencias() {
+        List<Vertice> adj = new ArrayList<>();
 
         for (Aresta edge : arestas) {
-            conn.add(((edge.getOrigem() == this) ? edge.getDestino() : edge.getOrigem()));
+            adj.add(((edge.getOrigem() == this) ? edge.getDestino() : edge.getOrigem()));
         }
 
-        return conn;
+        return adj;
     }
 
-    public T getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(T valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
-    public List<Aresta<E>> getArestas() {
+    public List<Aresta> getArestas() {
         return arestas;
     }
 
-    public void setArestas(List<Aresta<E>> arestas) {
+    public void setArestas(List<Aresta> arestas) {
         this.arestas = arestas;
     }
 }
