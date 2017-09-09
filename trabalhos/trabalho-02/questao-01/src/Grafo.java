@@ -31,11 +31,14 @@ public class Grafo {
     }
 
     public boolean eSimples() {
-        for (Vertice v : this.getVertices()) {
-            if (v.getAdjacencias().contains(v)) return false;
+        for (Vertice v1 : this.getVertices()) {
+            if (v1.getAdjacencias().contains(v1)) return false;
 
-            for (Aresta a : v.getArestas()) {
-            // TODO verificar arestas paralelas
+            for (Vertice v2 : v1.getAdjacencias()) {
+                Aresta a1 = getAresta(v1, v2);
+                Aresta a2 = getAresta(v2, v1);
+
+                if (a2 == null || a1.getValor() != a2.getValor()) return false;
             }
         }
 
@@ -61,15 +64,13 @@ public class Grafo {
     public boolean eCompleto() {
         if (!this.getVertices().isEmpty()) {
             for (Vertice v : this.getVertices()) {
-                ArrayList<Vertice> adjacencias = v.getAdjacencias();
-
                 for (Vertice v2 : this.getVertices()) {
-                    if (!adjacencias.contains(v2)) return false;
+                    if (!v.getAdjacencias().contains(v2)) return false;
                 }
             }
-
             return true;
-        } return false;
+        }
+        return false;
     }
 
     public boolean eNulo() {
@@ -80,8 +81,12 @@ public class Grafo {
     }
 
     public boolean eBipartido() {
-        for (Vertice v : this.getVertices()) {
-
+        for (Vertice v1 : this.getVertices()) {
+            for (Vertice v2 : v1.getAdjacencias()) {
+                for (Vertice v3 : v2.getAdjacencias()) {
+                    if (v1.getAdjacencias().contains(v3)) return false;
+                }
+            }
         }
         return false;
     }

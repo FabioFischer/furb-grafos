@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="54" column="24" lean-forward="false" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+            <state relative-caret-position="147">
+              <caret line="56" column="39" lean-forward="true" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -49,16 +49,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grafo.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Grafo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Grafo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+            <state relative-caret-position="240">
+              <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
                 <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
-                <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
                 <element signature="method#getVertice#0;class#Grafo#0" expanded="false" />
                 <element signature="method#toString#0;class#Grafo#0" expanded="false" />
               </folding>
@@ -81,8 +80,8 @@
         <option value="$PROJECT_DIR$/src/Graph.java" />
         <option value="$PROJECT_DIR$/src/Vertice.java" />
         <option value="$PROJECT_DIR$/src/Aresta.java" />
-        <option value="$PROJECT_DIR$/src/Grafo.java" />
         <option value="$PROJECT_DIR$/src/App.java" />
+        <option value="$PROJECT_DIR$/src/Grafo.java" />
       </list>
     </option>
   </component>
@@ -508,7 +507,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
             <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
-            <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#getVertice#0;class#Grafo#0" expanded="false" />
             <element signature="method#toString#0;class#Grafo#0" expanded="false" />
           </folding>
@@ -556,7 +554,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
             <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
-            <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#getVertice#0;class#Grafo#0" expanded="false" />
             <element signature="method#toString#0;class#Grafo#0" expanded="false" />
           </folding>
@@ -612,21 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Grafo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
-            <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
-            <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
-            <element signature="method#getVertice#0;class#Grafo#0" expanded="false" />
-            <element signature="method#toString#0;class#Grafo#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Vertice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -640,9 +622,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="54" column="24" lean-forward="false" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state relative-caret-position="147">
+          <caret line="56" column="39" lean-forward="true" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Grafo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
+            <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
+            <element signature="method#getVertice#0;class#Grafo#0" expanded="false" />
+            <element signature="method#toString#0;class#Grafo#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
