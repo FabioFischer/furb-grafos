@@ -45,4 +45,8 @@ public class Aresta {
     public void setDestino(Vertice destino) {
         this.destino = destino;
     }
+
+    public String toString() {
+        return "Valor: " + this.getValor() + " | origem: " + this.getOrigem().getValor() + " destino: " + this.getDestino().getValor();
+    }
 }

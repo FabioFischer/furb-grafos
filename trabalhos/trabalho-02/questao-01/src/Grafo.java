@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *   FURB - Bacharelado em Ciências da Computação
@@ -11,7 +10,7 @@ import java.util.List;
  **/
 
 public class Grafo {
-    private List<Vertice> vertices;
+    private ArrayList<Vertice> vertices;
 
     public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
         this.setVertices(new ArrayList<>());
@@ -91,6 +90,20 @@ public class Grafo {
         return false;
     }
 
+    public ArrayList<Aresta> getArestas() {
+        ArrayList<Aresta> arestas = new ArrayList<>();
+
+        if (!this.getVertices().isEmpty()) {
+            for (Vertice v : this.getVertices()) {
+                for (Aresta a : v.getArestas()) {
+                    if (!arestas.contains(a)) arestas.add(a);
+                }
+            }
+        }
+
+        return arestas;
+    }
+
     public int[][] getMatrizAdjacencia() {
         int[][] matrizAdj = new int[this.getVertices().size()][this.getVertices().size()];
 
@@ -168,11 +181,11 @@ public class Grafo {
         return null;
     }
 
-    public List<Vertice> getVertices() {
+    public ArrayList<Vertice> getVertices() {
         return vertices;
     }
 
-    private void setVertices(List<Vertice> vertices) {
+    private void setVertices(ArrayList<Vertice> vertices) {
         this.vertices = vertices;
     }
 

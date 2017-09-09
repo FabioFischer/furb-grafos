@@ -32,6 +32,10 @@ public class Vertice {
         return adj;
     }
 
+    public int getGrau() {
+        return this.getAdjacencias().size();
+    }
+
     public int getValor() {
         return valor;
     }
