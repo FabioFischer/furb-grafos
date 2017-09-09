@@ -71,26 +71,23 @@ public class Grafo {
     }
 
     public void addAresta(int valor, Vertice origem, Vertice destino) {
-        Aresta a = this.getAresta(origem, destino);
+        Aresta aresta = null;
 
-        if (a == null) {
-            a = new Aresta(valor);
-
-            a.setOrigem(origem);
-            a.setDestino(destino);
-
-            origem.getArestas().add(a);
-            destino.getArestas().add(a);
-        }
-    }
-
-    public Aresta addAresta(Vertice origem, Vertice destino) {
         for (Aresta a : origem.getArestas()) {
             if (destino == a.getDestino()) {
-                return a;
+                aresta = a;
             }
         }
-        return null;
+
+        if (aresta == null) {
+            aresta = new Aresta(valor);
+
+            aresta.setOrigem(origem);
+            aresta.setDestino(destino);
+
+            origem.getArestas().add(aresta);
+            destino.getArestas().add(aresta);
+        }
     }
 
     private Aresta getAresta(int origem, int destino) {
@@ -99,13 +96,10 @@ public class Grafo {
 
     private Aresta getAresta(Vertice origem, Vertice destino) {
         if (origem != null && destino != null) {
-            for (Vertice v : this.getVertices()) {
-                if (v == origem) {
-                    for (Aresta a : v.getArestas()) {
-                        if (a.getDestino() == destino)
-                            return a;
-                    }
-                }
+            for (Aresta a : origem.getArestas()) {
+                if (a.getOrigem() == origem)
+                    if (a.getDestino() == destino) return a;
+
             }
         }
         return null;

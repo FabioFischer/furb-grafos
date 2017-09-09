@@ -23,8 +23,10 @@ public class Vertice {
     public List<Vertice> getAdjacencias() {
         List<Vertice> adj = new ArrayList<>();
 
-        for (Aresta edge : arestas) {
-            adj.add(((edge.getOrigem() == this) ? edge.getDestino() : edge.getOrigem()));
+        for (Aresta a : this.getArestas()) {
+            if (a.getOrigem() == this) {
+                adj.add(a.getDestino());
+            }
         }
 
         return adj;
