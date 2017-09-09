@@ -19,12 +19,15 @@ public class Grafo {
     }
 
     public boolean eDirigido() {
-        for (Vertice v : this.getVertices()) {
-            for (Vertice v2 : v.getAdjacencias()) {
-                if (!v2.getAdjacencias().contains(v)) return false;
+        for (Vertice v1 : this.getVertices()) {
+            for (Vertice v2 : v1.getAdjacencias()) {
+                Aresta a1 = getAresta(v1, v2);
+                Aresta a2 = getAresta(v2, v1);
+
+                if (a2 == null || a1.getValor() != a2.getValor()) return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean eSimples() {
@@ -50,9 +53,9 @@ public class Grafo {
                     if (grau != v.getAdjacencias().size()) return false;
                 }
             }
-
             return true;
-        } return false;
+        }
+        return false;
     }
 
     public boolean eCompleto() {
@@ -70,13 +73,16 @@ public class Grafo {
     }
 
     public boolean eNulo() {
-        for(Vertice v : this.getVertices()) {
+        for (Vertice v : this.getVertices()) {
             if (!v.getArestas().isEmpty()) return false;
         }
         return true;
     }
 
     public boolean eBipartido() {
+        for (Vertice v : this.getVertices()) {
+
+        }
         return false;
     }
 
@@ -117,20 +123,10 @@ public class Grafo {
         Aresta aresta = null;
 
         for (Aresta a : origem.getArestas()) {
-            if (destino == a.getDestino()) {
-                aresta = a;
-            }
+            if (a.getOrigem() == origem && a.getDestino() == destino) aresta = a;
         }
 
-        if (aresta == null) {
-            aresta = new Aresta(valor);
-
-            aresta.setOrigem(origem);
-            aresta.setDestino(destino);
-
-            origem.getArestas().add(aresta);
-            destino.getArestas().add(aresta);
-        }
+        if (aresta == null) new Aresta(valor, origem, destino);
     }
 
     private Vertice verificaVertice(int valor) {
@@ -151,9 +147,7 @@ public class Grafo {
     private Aresta getAresta(Vertice origem, Vertice destino) {
         if (origem != null && destino != null) {
             for (Aresta a : origem.getArestas()) {
-                if (a.getOrigem() == origem)
-                    if (a.getDestino() == destino) return a;
-
+                if (a.getOrigem() == origem && a.getDestino() == destino) return a;
             }
         }
         return null;

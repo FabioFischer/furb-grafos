@@ -13,8 +13,13 @@ public class Aresta {
     private Vertice origem;
     private Vertice destino;
 
-    public Aresta(int key) {
+    public Aresta(int key, Vertice origem, Vertice destino) {
         this.setValor(key);
+        this.setOrigem(origem);
+        this.setDestino(destino);
+
+        origem.getArestas().add(this);
+        destino.getArestas().add(this);
     }
 
     public int getValor() {

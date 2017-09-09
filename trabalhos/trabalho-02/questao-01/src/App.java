@@ -49,7 +49,7 @@ public class App {
 
     public static void main(String[] args) {
         int[][] matrizAdj = {
-                {0, 1, 0, 1},
+                {0, 1, 0, 0},
                 {1, 0, 1, 0},
                 {0, 1, 1, 1},
                 {0, 0, 1, 0}};
@@ -58,6 +58,6 @@ public class App {
 
         System.out.println(g.toString());
 
-        tipoDoGrafo(matrizAdj);
+        System.out.println(tipoDoGrafo(matrizAdj));
     }
 }
