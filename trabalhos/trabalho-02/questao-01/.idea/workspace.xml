@@ -52,17 +52,13 @@
       <file leaf-file-name="Grafo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Grafo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+            <state relative-caret-position="198">
+              <caret line="34" column="47" lean-forward="false" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#479#480#0" expanded="true" />
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#540#541#0" expanded="true" />
-                <element signature="e#1315#1316#0" expanded="true" />
-                <element signature="e#1343#1344#0" expanded="true" />
+                <element signature="e#1997#1998#0" expanded="true" />
+                <element signature="e#2025#2026#0" expanded="true" />
                 <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
                 <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
                 <element signature="method#addAresta#0;class#Grafo#0" expanded="false" />
@@ -517,12 +513,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1997#1998#0" expanded="true" />
+            <element signature="e#2025#2026#0" expanded="true" />
             <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addAresta#0;class#Grafo#0" expanded="false" />
@@ -575,12 +567,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1997#1998#0" expanded="true" />
+            <element signature="e#2025#2026#0" expanded="true" />
             <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addAresta#0;class#Grafo#0" expanded="false" />
@@ -663,17 +651,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Grafo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        <state relative-caret-position="198">
+          <caret line="34" column="47" lean-forward="false" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Grafo#0;class#Grafo#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1997#1998#0" expanded="true" />
+            <element signature="e#2025#2026#0" expanded="true" />
             <element signature="method#getMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addMatrizAdjacencia#0;class#Grafo#0" expanded="false" />
             <element signature="method#addAresta#0;class#Grafo#0" expanded="false" />

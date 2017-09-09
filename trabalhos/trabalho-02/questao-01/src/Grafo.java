@@ -19,37 +19,54 @@ public class Grafo {
     }
 
     public boolean eDirigido() {
-        return false;
+        for (Vertice v : this.getVertices()) {
+            for (Vertice v2 : v.getAdjacencias()) {
+                if (!v2.getAdjacencias().contains(v)) return false;
+            }
+        }
+        return true;
     }
 
     public boolean eSimples() {
-        return false;
-    }
-
-    public boolean eRegular() {
-        int grau = 0;
-
         for (Vertice v : this.getVertices()) {
-            if (grau == 0) {
-                grau = v.getAdjacencias().size();
-            } else {
-                if (grau != v.getAdjacencias().size()) return false;
+            if (v.getAdjacencias().contains(v)) return false;
+
+            for (Aresta a : v.getArestas()) {
+            // TODO verificar arestas paralelas
             }
         }
 
         return true;
     }
 
-    public boolean eCompleto() {
-        for (Vertice v : this.getVertices()) {
-            ArrayList<Vertice> adjacencias = v.getAdjacencias();
+    public boolean eRegular() {
+        int grau = 0;
 
-            for (Vertice v2 : adjacencias) {
-
+        if (!this.getVertices().isEmpty()) {
+            for (Vertice v : this.getVertices()) {
+                if (grau == 0) {
+                    grau = v.getAdjacencias().size();
+                } else {
+                    if (grau != v.getAdjacencias().size()) return false;
+                }
             }
-        }
 
-        return false;
+            return true;
+        } return false;
+    }
+
+    public boolean eCompleto() {
+        if (!this.getVertices().isEmpty()) {
+            for (Vertice v : this.getVertices()) {
+                ArrayList<Vertice> adjacencias = v.getAdjacencias();
+
+                for (Vertice v2 : this.getVertices()) {
+                    if (!adjacencias.contains(v2)) return false;
+                }
+            }
+
+            return true;
+        } return false;
     }
 
     public boolean eNulo() {
