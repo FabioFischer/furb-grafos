@@ -20,8 +20,8 @@ public class Vertice {
         this.setValor(valor);
     }
 
-    public List<Vertice> getAdjacencias() {
-        List<Vertice> adj = new ArrayList<>();
+    public ArrayList<Vertice> getAdjacencias() {
+        ArrayList<Vertice> adj = new ArrayList<>();
 
         for (Aresta a : this.getArestas()) {
             if (a.getOrigem() == this) {

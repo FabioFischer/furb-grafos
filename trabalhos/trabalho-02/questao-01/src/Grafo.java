@@ -18,23 +18,49 @@ public class Grafo {
         this.addMatrizAdjacencia(matrizAdj);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder("-");
+    public boolean eDirigido() {
+        return false;
+    }
 
-        if (!this.getVertices().isEmpty()) {
-            int[][] matrizAdj = this.getMatrizAdjacencia();
+    public boolean eSimples() {
+        return false;
+    }
 
-            for (int[] aMatrizAdj : matrizAdj) {
-                builder.append("\n");
-                for (int j = 0; j < aMatrizAdj.length; j++) {
-                    builder.append(aMatrizAdj[j]).append(((j + 1) < aMatrizAdj.length) ? ", " : "");
-                }
-                builder.append("\n-");
+    public boolean eRegular() {
+        int grau = 0;
+
+        for (Vertice v : this.getVertices()) {
+            if (grau == 0) {
+                grau = v.getAdjacencias().size();
+            } else {
+                if (grau != v.getAdjacencias().size()) return false;
             }
         }
 
-        return builder.toString();
+        return true;
+    }
+
+    public boolean eCompleto() {
+        for (Vertice v : this.getVertices()) {
+            ArrayList<Vertice> adjacencias = v.getAdjacencias();
+
+            for (Vertice v2 : adjacencias) {
+
+            }
+        }
+
+        return false;
+    }
+
+    public boolean eNulo() {
+        for(Vertice v : this.getVertices()) {
+            if (!v.getArestas().isEmpty()) return false;
+        }
+        return true;
+    }
+
+    public boolean eBipartido() {
+        return false;
     }
 
     public int[][] getMatrizAdjacencia() {
@@ -90,6 +116,17 @@ public class Grafo {
         }
     }
 
+    private Vertice verificaVertice(int valor) {
+        Vertice v = this.getVertice(valor);
+
+        if (v == null) {
+            v = new Vertice(valor);
+            this.getVertices().add(v);
+        }
+
+        return v;
+    }
+
     private Aresta getAresta(int origem, int destino) {
         return this.getAresta(this.getVertice(origem), this.getVertice(destino));
     }
@@ -115,22 +152,30 @@ public class Grafo {
         return null;
     }
 
-    private Vertice verificaVertice(int valor) {
-        Vertice v = this.getVertice(valor);
-
-        if (v == null) {
-            v = new Vertice(valor);
-            this.getVertices().add(v);
-        }
-
-        return v;
-    }
-
     public List<Vertice> getVertices() {
         return vertices;
     }
 
     private void setVertices(List<Vertice> vertices) {
         this.vertices = vertices;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("-");
+
+        if (!this.getVertices().isEmpty()) {
+            int[][] matrizAdj = this.getMatrizAdjacencia();
+
+            for (int[] aMatrizAdj : matrizAdj) {
+                builder.append("\n");
+                for (int j = 0; j < aMatrizAdj.length; j++) {
+                    builder.append(aMatrizAdj[j]).append(((j + 1) < aMatrizAdj.length) ? ", " : "");
+                }
+                builder.append("\n-");
+            }
+        }
+
+        return builder.toString();
     }
 }

@@ -27,7 +27,16 @@
 public class App {
 
     public static String tipoDoGrafo(int[][] matrizAdj) {
-        return "";
+        Grafo g = new Grafo(matrizAdj);
+
+        return " ------------ " +
+                "\n " + ((g.eDirigido()) ? "Dirigido" : "Não-dirigido") +
+                ((g.eSimples()) ? ", Simples" : ", Multigrafo") +
+                ((g.eRegular()) ? ", Regular" : "") +
+                ((g.eCompleto()) ? ", Completo" : "") +
+                ((g.eNulo()) ? ", Nulo" : "") +
+                ((g.eBipartido()) ? ", Bipartido" : "") +
+                "\n ------------ ";
     }
 
     public static String arestasDoGrafo(int[][] matrizAdj) {
@@ -48,5 +57,7 @@ public class App {
         Grafo g = new Grafo(matrizAdj);
 
         System.out.println(g.toString());
+
+        tipoDoGrafo(matrizAdj);
     }
 }
