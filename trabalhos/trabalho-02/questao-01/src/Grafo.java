@@ -25,10 +25,10 @@ public class Grafo {
         if (!this.getVertices().isEmpty()) {
             int[][] matrizAdj = this.getMatrizAdjacencia();
 
-            for (int i = 0; i < matrizAdj.length; i++) {
+            for (int[] aMatrizAdj : matrizAdj) {
                 builder.append("\n");
-                for (int j = 0; j < matrizAdj[i].length; j++) {
-                    builder.append(matrizAdj[i][j] + (((j + 1) < matrizAdj[i].length) ? ", " : ""));
+                for (int j = 0; j < aMatrizAdj.length; j++) {
+                    builder.append(aMatrizAdj[j]).append(((j + 1) < aMatrizAdj.length) ? ", " : "");
                 }
                 builder.append("\n-");
             }
@@ -43,6 +43,7 @@ public class Grafo {
         for (int i = 0; i < matrizAdj.length; i++) {
             for (int j = 0; j < matrizAdj[i].length; j++) {
                 Aresta a = this.getAresta(i, j);
+
                 matrizAdj[i][j] = (a != null) ? a.getValor() : 0;
             }
         }
@@ -69,14 +70,27 @@ public class Grafo {
         this.addAresta(valor, this.verificaVertice(origem), this.verificaVertice(destino));
     }
 
-    private void addAresta(int valor, Vertice origem, Vertice destino) {
-        Aresta a = new Aresta(valor);
+    public void addAresta(int valor, Vertice origem, Vertice destino) {
+        Aresta a = this.getAresta(origem, destino);
 
-        a.setOrigem(origem);
-        a.setDestino(origem);
+        if (a == null) {
+            a = new Aresta(valor);
 
-        origem.getArestas().add(a);
-        destino.getArestas().add(a);
+            a.setOrigem(origem);
+            a.setDestino(destino);
+
+            origem.getArestas().add(a);
+            destino.getArestas().add(a);
+        }
+    }
+
+    public Aresta addAresta(Vertice origem, Vertice destino) {
+        for (Aresta a : origem.getArestas()) {
+            if (destino == a.getDestino()) {
+                return a;
+            }
+        }
+        return null;
     }
 
     private Aresta getAresta(int origem, int destino) {
