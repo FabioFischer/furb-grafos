@@ -20,6 +20,6 @@ public class App {
 
         Grafo g = new Grafo(matrizAdj);
 
-        System.out.println(g.toString());
+        System.out.println(g.qtdArvores());
     }
 }

@@ -51,4 +51,11 @@ public class Vertice {
     public void setArestas(List<Aresta> arestas) {
         this.arestas = arestas;
     }
+
+    public int qtdArvores(Vertice pai) {
+        for (Vertice v : this.getAdjacencias()) {
+            return ((v != pai) ? 1 : (this.getAdjacencias().size() + 1)) + this.qtdArvores(v);
+        }
+        return 1;
+    }
 }

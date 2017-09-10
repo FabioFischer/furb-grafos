@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *   FURB - Bacharelado em Ciências da Computação
@@ -15,6 +16,17 @@ public class Grafo {
     public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
         this.setVertices(new ArrayList<>());
         this.addMatrizAdjacencia(matrizAdj);
+    }
+
+    public int qtdArvores() {
+        int qtdArvores = 0;
+
+        if (!this.getVertices().isEmpty()) {
+            for (Vertice v : this.getVertices()) {
+                qtdArvores += v.qtdArvores(null);
+            }
+        }
+        return qtdArvores;
     }
 
     public boolean eDirigido() {
