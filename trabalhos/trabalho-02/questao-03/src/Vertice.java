@@ -1,3 +1,5 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,9 +54,18 @@ public class Vertice {
         this.arestas = arestas;
     }
 
-    public int qtdArvores(Vertice pai) {
-        for (Vertice v : this.getAdjacencias()) {
-            return ((v != pai) ? 1 : (this.getAdjacencias().size() + 1)) + this.qtdArvores(v);
+    public int qtdArvores() {
+        if (!this.getAdjacencias().isEmpty()) {
+            for (Vertice v : this.getAdjacencias()) {
+                return qtdArvores(v, this);
+            }
+        }
+        return 1;
+    }
+
+    private int qtdArvores(Vertice v1, Vertice v2) {
+        if (!v1.getAdjacencias().isEmpty() && v1 != v2) {
+            return v1.getAdjacencias().size();
         }
         return 1;
     }

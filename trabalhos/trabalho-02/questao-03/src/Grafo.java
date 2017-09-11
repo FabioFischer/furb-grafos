@@ -23,7 +23,7 @@ public class Grafo {
 
         if (!this.getVertices().isEmpty()) {
             for (Vertice v : this.getVertices()) {
-                qtdArvores += v.qtdArvores(null);
+                qtdArvores += v.qtdArvores();
             }
         }
         return qtdArvores;
