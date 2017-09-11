@@ -5,7 +5,7 @@ import java.util.List;
 /**
  *   FURB - Bacharelado em Ciências da Computação
  *   Teoria dos Grafos
- *   Trabalho 02 - Questão 01
+ *   Trabalho 02 - Questão 02
  *
  *   Fábio Luiz Fischer
  *
