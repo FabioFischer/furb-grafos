@@ -17,6 +17,10 @@ public class Grafo {
         this.addMatrizAdjacencia(matrizAdj);
     }
 
+    public Grafo() {
+        this.setVertices(new ArrayList<>());
+    }
+
     public boolean eDirigido() {
         for (Vertice v1 : this.getVertices()) {
             for (Vertice v2 : v1.getAdjacencias()) {
@@ -133,11 +137,11 @@ public class Grafo {
         }
     }
 
-    private void addAresta(int valor, int origem, int destino) {
+    public void addAresta(int valor, int origem, int destino) {
         this.addAresta(valor, this.verificaVertice(origem), this.verificaVertice(destino));
     }
 
-    public void addAresta(int valor, Vertice origem, Vertice destino) {
+    private void addAresta(int valor, Vertice origem, Vertice destino) {
         Aresta aresta = null;
 
         for (Aresta a : origem.getArestas()) {

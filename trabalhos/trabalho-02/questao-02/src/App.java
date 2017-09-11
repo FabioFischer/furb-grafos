@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,6 +10,8 @@ import java.util.Collections;
  *   Trabalho 02 - Questão 02
  *
  *   Fábio Luiz Fischer
+ *
+ *   Mania de par (https://www.urionlinejudge.com.br/judge/pt/problems/view/1931)
  *
  *   Patrícia é uma ótima desenvolvedora de software. No entanto, como quase toda pessoa brilhante, ela tem algumas manias estranhas, e uma delas é que tudo que ela faz tem que ser em número par.
  * Muitas vezes essa mania não atrapalha, apesar de causar estranhamento nos outros. Alguns exemplos: ela tem que fazer diariamente um número par de refeições;
@@ -34,15 +39,64 @@ import java.util.Collections;
 
 public class App {
 
+    public static boolean validaC(int c) {
+        return c >= 2 && c <= 10000;
+    }
+
+    public static boolean validaV(int v) {
+        return v >= 0 && v <= 50000;
+    }
+
+    public static boolean validaC1(int c1) {
+        return c1 >= 1;
+    }
+
+    public static boolean validaC2(int c2) {
+        return c2 >= 1;
+    }
+
+    public static boolean validaG(int g) {
+        return g >= 1 && g <= 104;
+    }
+
     public static void main(String[] args) {
-        int[][] matrizAdj = {
-                {0, 3, 0, 0},
-                {9, 0, 7, 0},
-                {0, 0, 4, 2},
-                {0, 0, 1, 0}};
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Grafo g = new Grafo(matrizAdj);
+        try {
+            System.out.println("[Num de cidades][espaço][Num de estradas]");
+            String cabecalho = br.readLine();
 
-        System.out.println(g.toString());
+            int c = Integer.parseInt(cabecalho.split("\\s+")[0]), v = Integer.parseInt(cabecalho.split("\\s+")[1]);
+
+            if (validaC(c) && validaV(v)) {
+                System.out.println(c);
+                System.out.println(v);
+                Grafo grafo = new Grafo();
+
+                for (int i = 0; i < v; i++) {
+                    System.out.println("\n[origem][espaço][destino][espaço][qtd pedagios]   " + v + " linhas");
+                    String adj = br.readLine();
+
+                    int c1 = Integer.parseInt(adj.split("\\s+")[0]);
+                    int c2 = Integer.parseInt(adj.split("\\s+")[1]);
+                    int g = Integer.parseInt(adj.split("\\s+")[2]);
+
+                    if (validaC1(c1) && validaC2(c2) && validaG(g)) {
+                        System.out.println(c1);
+                        System.out.println(c2);
+                        System.out.println(g);
+//                    grafo.addAresta(g, c1, c2);
+                    } else {
+                        break;
+                    }
+                }
+
+//        System.out.println(grafo.toString());
+            } else {
+                System.out.println("Input inválido!");
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao receber inputs!");
+        }
     }
 }
