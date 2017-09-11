@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Grafo {
     private ArrayList<Vertice> vertices;
 
-    public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
+    public Grafo(Integer[][] matrizAdj) throws IllegalArgumentException {
         this.setVertices(new ArrayList<>());
         this.addMatrizAdjacencia(matrizAdj);
     }
@@ -108,28 +108,27 @@ public class Grafo {
         return arestas;
     }
 
-    public int[][] getMatrizAdjacencia() {
-        int[][] matrizAdj = new int[this.getVertices().size()][this.getVertices().size()];
+    public Integer[][] getMatrizAdjacencia() {
+        Integer[][] matrizAdj = new Integer[this.getVertices().size()][this.getVertices().size()];
 
         for (int i = 0; i < matrizAdj.length; i++) {
             for (int j = 0; j < matrizAdj[i].length; j++) {
-                Aresta a = this.getAresta(i, j);
-
-                matrizAdj[i][j] = (a != null) ? a.getValor() : 0;
+                Aresta a = this.getAresta(i+1, j+1);
+                matrizAdj[i][j] = (a != null) ? a.getValor() : null;
             }
         }
 
         return matrizAdj;
     }
 
-    private void addMatrizAdjacencia(int[][] matrizAdj) {
+    private void addMatrizAdjacencia(Integer[][] matrizAdj) {
         if (this.getVertices().isEmpty()) {
-            for (int i = 0; i < matrizAdj.length; i++) {
+            for (int i = 1; i < matrizAdj.length; i++) {
                 if (matrizAdj[i].length != matrizAdj.length) {
                     new IllegalArgumentException("Número de colunas deve ser igual ao número de linhas");
                 }
-                for (int j = 0; j < matrizAdj[i].length; j++) {
-                    if (matrizAdj[i][j] > 0) {
+                for (int j = 1; j < matrizAdj[i].length; j++) {
+                    if (matrizAdj[i][j] != null) {
                         this.addAresta(matrizAdj[i][j], i, j);
                     }
                 }
@@ -198,9 +197,9 @@ public class Grafo {
         StringBuilder builder = new StringBuilder("-");
 
         if (!this.getVertices().isEmpty()) {
-            int[][] matrizAdj = this.getMatrizAdjacencia();
+            Integer[][] matrizAdj = this.getMatrizAdjacencia();
 
-            for (int[] aMatrizAdj : matrizAdj) {
+            for (Integer[] aMatrizAdj : matrizAdj) {
                 builder.append("\n");
                 for (int j = 0; j < aMatrizAdj.length; j++) {
                     builder.append(aMatrizAdj[j]).append(((j + 1) < aMatrizAdj.length) ? ", " : "");

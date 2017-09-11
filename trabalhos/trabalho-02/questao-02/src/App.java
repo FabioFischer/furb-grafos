@@ -69,34 +69,33 @@ public class App {
             int c = Integer.parseInt(cabecalho.split("\\s+")[0]), v = Integer.parseInt(cabecalho.split("\\s+")[1]);
 
             if (validaC(c) && validaV(v)) {
-                System.out.println(c);
-                System.out.println(v);
                 Grafo grafo = new Grafo();
+                System.out.println("\n[origem][espaço][destino][espaço][qtd pedagios]   " + v + " linhas");
 
                 for (int i = 0; i < v; i++) {
-                    System.out.println("\n[origem][espaço][destino][espaço][qtd pedagios]   " + v + " linhas");
                     String adj = br.readLine();
 
-                    int c1 = Integer.parseInt(adj.split("\\s+")[0]);
-                    int c2 = Integer.parseInt(adj.split("\\s+")[1]);
-                    int g = Integer.parseInt(adj.split("\\s+")[2]);
+                    int c1 = Integer.parseInt(adj.split("\\s+")[0]), c2 = Integer.parseInt(adj.split("\\s+")[1]), g = Integer.parseInt(adj.split("\\s+")[2]);
 
                     if (validaC1(c1) && validaC2(c2) && validaG(g)) {
-                        System.out.println(c1);
-                        System.out.println(c2);
-                        System.out.println(g);
-//                    grafo.addAresta(g, c1, c2);
+                        // Grafo é bidirecional
+                        grafo.addAresta(g, c1, c2);
+                        grafo.addAresta(g, c2, c1);
                     } else {
                         break;
                     }
                 }
 
-//        System.out.println(grafo.toString());
+                // matriz de adj
+                System.out.println(grafo.toString());
+                //TODO buscar caminho que some um valor par de pedágios para C
             } else {
                 System.out.println("Input inválido!");
             }
         } catch (IOException e) {
-            System.out.println("Erro ao receber inputs!");
+            System.out.println("Erro ao receber inputs! " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Formato de input inválido! " + e.getMessage());
         }
     }
 }
