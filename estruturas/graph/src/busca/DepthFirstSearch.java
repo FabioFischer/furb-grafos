@@ -9,6 +9,11 @@ import grafo.Vertice;
 public class DepthFirstSearch {
 
     /**
+     * Grafo  onde a busca será realizada
+     */
+    private Grafo g;
+
+    /**
      * Variavel utilizada para sinalizar os tempos de abertura (descobrimento) e fechamento dos vértices.
       */
     private int tempo = 0;
@@ -33,10 +38,12 @@ public class DepthFirstSearch {
      * @param g Grafo onde a busca será realizada
      */
     private void dfs(Grafo g) {
+        this.g = g;
+        this.tempo = 0;
+
         for (Vertice v : g.getVertices()) {
             v.setEstado(Vertice.Estado.BRANCO);
         }
-        tempo = 0;
 
         for (Vertice u : g.getVertices()) {
             if (u.getEstado().equals(Vertice.Estado.BRANCO))
@@ -63,5 +70,16 @@ public class DepthFirstSearch {
         }
         u.setEstado(Vertice.Estado.PRETO);
         u.setFechamento(tempo);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder strBuilder = new StringBuilder();
+
+        for (Vertice v : this.g.getVertices()) {
+            strBuilder.append("\nv: " + v.getValor() + ", Cor: " + v.getEstado() + ", Tempo Abertura: " + v.getDescobrimento() + ", Tempo Fechamento: " + v.getFechamento());
+        }
+
+        return strBuilder.toString();
     }
 }

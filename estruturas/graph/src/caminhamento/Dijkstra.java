@@ -85,12 +85,12 @@ public class Dijkstra {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("\n\n  - S");
+        StringBuilder strBuilder = new StringBuilder("\n\n  - S");
 
         for (Vertice v : this.S) {
-            str.append("\nv: " + v.getValor() + ", d: " + v.getDistancia() + ", ∏: " + ((v.getPai() == null) ? "nulo" : v.getPai().getValor()));
+            strBuilder.append("\nv: " + v.getValor() + ", d: " + v.getDistancia() + ", ∏: " + ((v.getPai() == null) ? "nulo" : v.getPai().getValor()));
         }
 
-        return str.toString();
+        return strBuilder.toString();
     }
 }

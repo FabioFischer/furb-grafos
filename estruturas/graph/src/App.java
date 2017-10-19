@@ -1,3 +1,4 @@
+import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
 import grafo.Aresta;
 import grafo.Grafo;
@@ -60,7 +61,16 @@ public class App {
         return strBuilder.toString();
     }
 
-    public static String matrizRoteamentoDijkstra(int[][] matrizAdj, int verticeInicial) {
+    public static String dfs(int[][] matrizAdj) {
+        Grafo g = new Grafo(matrizAdj);
+
+        StringBuilder strBuilder = new StringBuilder("\n ------------   DFS   ------------ ");
+        strBuilder.append(new DepthFirstSearch(g).toString());
+
+        return strBuilder.toString();
+    }
+
+    public static String dijkstra(int[][] matrizAdj, int verticeInicial) {
         Grafo g = new Grafo(matrizAdj);
 
         StringBuilder strBuilder = new StringBuilder("\n ------------ Dijkstra ------------ ");
@@ -77,9 +87,10 @@ public class App {
                 {0, 0, 0, 0, 0},
                 {0, 0, 8, 5, 0}};
 
-        System.out.println(tipoDoGrafo(matrizAdj));
+//        System.out.println(tipoDoGrafo(matrizAdj));
 //        System.out.println(arestasDoGrafo(matrizAdj));
 //        System.out.println(grausDoVertice(matrizAdj));
-        System.out.println(matrizRoteamentoDijkstra(matrizAdj, 0));
+//        System.out.println(dfs(matrizAdj));
+//        System.out.println(dijkstra(matrizAdj, 0));
     }
 }
