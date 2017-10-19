@@ -11,11 +11,18 @@ public class Vertice implements Comparable{
     // Conjunto de arestas do vértice
     private List<Aresta> arestas;
 
-    // Vértice pai - utilizado nos algoritmos de caminhamento do grafo
-    private Vertice pai;
+    // Atributos tilizados nos algoritmos de busca
+    private Estado estado;
+    private int descobrimento;
+    private int fechamento;
 
-    // Distancia até determinado vértice - utilizado nos algoritmos de caminhamento do grafo
+    // Atributos utilizado nos algoritmos de caminhamento do grafo
+    private Vertice pai;
     private float distancia;
+
+    public enum Estado {
+        BRANCO, CINZA, PRETO
+    }
 
     public Vertice(int valor) {
         this.setArestas(new ArrayList<>());
@@ -79,6 +86,30 @@ public class Vertice implements Comparable{
 
     public void setDistancia(float distancia) {
         this.distancia = distancia;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public int getDescobrimento() {
+        return descobrimento;
+    }
+
+    public void setDescobrimento(int descobrimento) {
+        this.descobrimento = descobrimento;
+    }
+
+    public int getFechamento() {
+        return fechamento;
+    }
+
+    public void setFechamento(int fechamento) {
+        this.fechamento = fechamento;
     }
 
     @Override

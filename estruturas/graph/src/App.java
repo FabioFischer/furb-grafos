@@ -63,7 +63,10 @@ public class App {
     public static String matrizRoteamentoDijkstra(int[][] matrizAdj, int verticeInicial) {
         Grafo g = new Grafo(matrizAdj);
 
-        return new Dijkstra(g, g.getVertice(verticeInicial)).toString();
+        StringBuilder strBuilder = new StringBuilder("\n ------------ Dijkstra ------------ ");
+        strBuilder.append(new Dijkstra(g, g.getVertice(verticeInicial)).toString());
+
+        return strBuilder.toString();
     }
 
     public static void main(String[] args) {
