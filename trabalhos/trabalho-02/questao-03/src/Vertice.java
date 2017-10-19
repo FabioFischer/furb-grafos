@@ -56,16 +56,19 @@ public class Vertice {
 
     public int qtdArvores() {
         if (!this.getAdjacencias().isEmpty()) {
-            for (Vertice v : this.getAdjacencias()) {
-                return qtdArvores(v, this);
-            }
+            return 1 + qtdArvores(this.getAdjacencias(), this);
         }
         return 1;
     }
 
-    private int qtdArvores(Vertice v1, Vertice v2) {
-        if (!v1.getAdjacencias().isEmpty() && v1 != v2) {
-            return v1.getAdjacencias().size();
+    private int qtdArvores(ArrayList<Vertice> adjacencias, Vertice pai) {
+        if (!adjacencias.isEmpty()) {
+            for (Vertice v : adjacencias) {
+                for (Vertice v1: v.getAdjacencias()) {
+                    if (v != v1) System.out.println("Hi " + v1.getValor() + " dad: " + v.getValor());
+                }
+//                if (v != pai) return (adjacencias.size()+1) + qtdArvores(v.getAdjacencias(), v);
+            }
         }
         return 1;
     }

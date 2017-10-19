@@ -86,9 +86,9 @@ public class App {
                     }
                 }
 
-                // matriz de adj
                 System.out.println(grafo.toString());
-                //TODO buscar caminho que some um valor par de pedágios para C
+                // Patrícia está atualmente na cidade 1 e a cidade do cliente é C
+                System.out.println("Qtd de pedágios: " + grafo.qtdPedagios(1, c));
             } else {
                 System.out.println("Input inválido!");
             }
@@ -96,6 +96,8 @@ public class App {
             System.out.println("Erro ao receber inputs! " + e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Formato de input inválido! " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
