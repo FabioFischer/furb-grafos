@@ -16,6 +16,7 @@ public class DepthFirstSearch {
     /**
      * Variavel utilizada para sinalizar os tempos de abertura (descobrimento) e fechamento dos vértices.
       */
+    
     private int tempo = 0;
 
     /**
@@ -27,7 +28,7 @@ public class DepthFirstSearch {
      */
     public DepthFirstSearch(Grafo g) {
         if (g == null) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Qualé mano, ta me zoando?? \nVai popular essas porra antes de me criar!");
         }
         this.dfs(g);
     }
