@@ -30,7 +30,7 @@ public class Dijkstra {
         this.initializeSingleSource(g, s);
 
         this.S = new ArrayList<>();
-        this.Q = g.getVertices();
+        this.Q = new ArrayList<>(g.getVertices());
 
         while (!this.Q.isEmpty()) {
             Vertice u = this.extractMin(this.Q);
@@ -81,16 +81,5 @@ public class Dijkstra {
      */
     private Vertice extractMin (List<Vertice> Q) {
         return Collections.min(Q);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder strBuilder = new StringBuilder("\n\n  - S");
-
-        for (Vertice v : this.S) {
-            strBuilder.append("\nv: " + v.getValor() + ", d: " + v.getDistancia() + ", ∏: " + ((v.getPai() == null) ? "nulo" : v.getPai().getValor()));
-        }
-
-        return strBuilder.toString();
     }
 }

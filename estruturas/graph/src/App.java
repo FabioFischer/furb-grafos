@@ -1,3 +1,4 @@
+import busca.BreadthFirstSearch;
 import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
 import grafo.Aresta;
@@ -9,6 +10,11 @@ import java.util.Collections;
 
 public class App {
 
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
     public static String tipoDoGrafo(int[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
 
@@ -21,10 +27,16 @@ public class App {
                 ((g.eBipartido()) ? ", Bipartido" : "");
     }
 
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
     public static String arestasDoGrafo(int[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
         ArrayList<Aresta> arestas = g.getArestas();
-        StringBuilder strBuilder = new StringBuilder("\n ------------ arestasDoGrafo ------------ " + "\n  Grafo possui " + arestas.size() + " arestas");
+        StringBuilder strBuilder = new StringBuilder("\n ------------ arestasDoGrafo ------------ "
+                + "\n  Grafo possui " + arestas.size() + " arestas");
 
         if (!arestas.isEmpty()) {
             for (Aresta a : arestas) {
@@ -35,6 +47,11 @@ public class App {
         return strBuilder.toString();
     }
 
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
     public static String grausDoVertice(int[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
         ArrayList<Vertice> vertices = g.getVertices();
@@ -61,6 +78,11 @@ public class App {
         return strBuilder.toString();
     }
 
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
     public static String dfs(int[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
 
@@ -70,11 +92,43 @@ public class App {
         return strBuilder.toString();
     }
 
-    public static String dijkstra(int[][] matrizAdj, int verticeInicial) {
+    /**
+     *
+     * @param matrizAdj
+     * @param verticeInicial
+     * @return
+     */
+    public static String bfs(int[][] matrizAdj, int verticeInicial) {
         Grafo g = new Grafo(matrizAdj);
 
+        StringBuilder strBuilder = new StringBuilder("\n ------------   BFS   ------------ ");
+        strBuilder.append(new BreadthFirstSearch(g, g.getVertice(verticeInicial)).toString());
+
+        return strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @param verticeInicial
+     * @return
+     */
+    public static String dijkstra(int[][] matrizAdj, int verticeInicial) {
+        Grafo g = new Grafo(matrizAdj);
+        new Dijkstra(g, g.getVertice(verticeInicial));
+
         StringBuilder strBuilder = new StringBuilder("\n ------------ Dijkstra ------------ ");
-        strBuilder.append(new Dijkstra(g, g.getVertice(verticeInicial)).toString());
+        String vertices = "", pais = "", distancias = "";
+
+        for (Vertice v : g.getVertices()) {
+            vertices += v.getValor() + "\t\t";
+            pais += (v.getPai() == null) ? "nil\t\t" : v.getPai().getValor() + "\t\t";
+            distancias += (v.getPai() == null) ? "-\t\t" : v.getDistancia() + "\t\t";
+        }
+
+        strBuilder.append("\n").append(vertices);
+        strBuilder.append("\n").append(pais);
+        strBuilder.append("\n").append(distancias);
 
         return strBuilder.toString();
     }
@@ -91,6 +145,7 @@ public class App {
 //        System.out.println(arestasDoGrafo(matrizAdj));
 //        System.out.println(grausDoVertice(matrizAdj));
 //        System.out.println(dfs(matrizAdj));
+//        System.out.println(bfs(matrizAdj, 0));
 //        System.out.println(dijkstra(matrizAdj, 0));
     }
 }
