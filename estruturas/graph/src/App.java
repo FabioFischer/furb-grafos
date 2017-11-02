@@ -1,6 +1,7 @@
 import busca.BreadthFirstSearch;
 import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
+import conexidade.DisjointSets;
 import grafo.Aresta;
 import grafo.Grafo;
 import grafo.Vertice;
@@ -107,6 +108,20 @@ public class App {
         return strBuilder.toString();
     }
 
+    public static String conjuntosDisjuntos(int[][] matrizAdj) {
+        Grafo g = new Grafo(matrizAdj);
+        DisjointSets ds = new DisjointSets(g);
+
+        StringBuilder strBuilder = new StringBuilder("\n ------------   DS   ------------ ");
+        strBuilder.append(ds.toString());
+        strBuilder.append("\n\nGrafo" + (ds.isConnected() ? " é " : " não é ") + "conexo");
+        ds.dS();
+        strBuilder.append(ds.toString());
+        strBuilder.append("\n\nGrafo" + (ds.isConnected() ? " é " : " não é ") + "conexo");
+
+        return strBuilder.toString();
+    }
+
     /**
      *
      * @param matrizAdj
@@ -147,5 +162,6 @@ public class App {
 //        System.out.println(dfs(matrizAdj));
 //        System.out.println(bfs(matrizAdj, 0));
 //        System.out.println(dijkstra(matrizAdj, 0));
+        System.out.println(conjuntosDisjuntos(matrizAdj));
     }
 }

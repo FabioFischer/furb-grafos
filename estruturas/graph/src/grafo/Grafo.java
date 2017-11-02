@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Grafo {
 
-    // Conjunto de vértices do Grafo
+    /**
+     * Conjunto de vértices do Grafo
+     */
     private ArrayList<Vertice> vertices;
 
     public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
