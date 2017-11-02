@@ -28,14 +28,15 @@ public class DisjointSets {
 
         this.g = g;
 
-        initializeSingleSource();
-        //this.dS();
+        this.dS();
     }
 
     /**
      *
      */
-    public void dS() {
+    private void dS() {
+        initializeSingleSource();
+
         for (Aresta a : this.g.getArestas()) {
             ArrayList<Vertice> ar1 = getSubset(a.getOrigem());
             ArrayList<Vertice> ar2 = getSubset(a.getDestino());

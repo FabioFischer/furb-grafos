@@ -114,10 +114,7 @@ public class App {
 
         StringBuilder strBuilder = new StringBuilder("\n ------------   DS   ------------ ");
         strBuilder.append(ds.toString());
-        strBuilder.append("\n\nGrafo" + (ds.isConnected() ? " é " : " não é ") + "conexo");
-        ds.dS();
-        strBuilder.append(ds.toString());
-        strBuilder.append("\n\nGrafo" + (ds.isConnected() ? " é " : " não é ") + "conexo");
+        strBuilder.append("\n\nGrafo").append(ds.isConnected() ? " é " : " não é ").append("conexo");
 
         return strBuilder.toString();
     }
@@ -162,6 +159,6 @@ public class App {
 //        System.out.println(dfs(matrizAdj));
 //        System.out.println(bfs(matrizAdj, 0));
 //        System.out.println(dijkstra(matrizAdj, 0));
-        System.out.println(conjuntosDisjuntos(matrizAdj));
+//        System.out.println(conjuntosDisjuntos(matrizAdj));
     }
 }
