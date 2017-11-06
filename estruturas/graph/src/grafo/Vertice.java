@@ -113,6 +113,11 @@ public class Vertice implements Comparable{
     }
 
     @Override
+    public String toString() {
+        return "" + this.getValor();
+    }
+
+    @Override
     public int compareTo(Object o) {
         Vertice v = (Vertice)o;
 

@@ -203,10 +203,12 @@ public class Fleury {
         StringBuilder strBuilder = new StringBuilder();
 
         if (this.isSemiEulerian()) {
-            if (this.v == Q.pop()) {
+            if (this.v == Q.peek()) {
                 strBuilder.append("\n\tGrafo é euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+                strBuilder.append("\n\tCaminho: " + Q.toString());
             } else {
                 strBuilder.append("\n\tGrafo é semi-euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+                strBuilder.append("\n\tCaminho: " + Q.toString());
             }
         } else {
             strBuilder.append("\n\tGrafo não é euleriano");
