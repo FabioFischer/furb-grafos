@@ -9,7 +9,7 @@ public class Grafo {
      */
     private ArrayList<Vertice> vertices;
 
-    public Grafo(int[][] matrizAdj) throws IllegalArgumentException {
+    public Grafo(Integer[][] matrizAdj) throws IllegalArgumentException {
         this.setVertices(new ArrayList<>());
         this.addMatrizAdjacencia(matrizAdj);
     }
@@ -101,28 +101,32 @@ public class Grafo {
         return arestas;
     }
 
-    public float[][] getMatrizAdjacencia() {
-        float[][] matrizAdj = new float[this.getVertices().size()][this.getVertices().size()];
+    public Float[][] getMatrizAdjacencia() {
+        Float[][] matrizAdj = new Float[this.getVertices().size()][this.getVertices().size()];
 
         for (int i = 0; i < matrizAdj.length; i++) {
             for (int j = 0; j < matrizAdj[i].length; j++) {
                 Aresta a = this.getAresta(i, j);
 
-                matrizAdj[i][j] = (a != null) ? a.getValor() : 0;
+                if (i == j && a == null) {
+                    matrizAdj[i][j] = 0f;
+                } else {
+                    matrizAdj[i][j] = (a != null) ? a.getValor() : null;
+                }
             }
         }
 
         return matrizAdj;
     }
 
-    private void addMatrizAdjacencia(int[][] matrizAdj) {
+    private void addMatrizAdjacencia(Integer[][] matrizAdj) {
         if (this.getVertices().isEmpty()) {
             for (int i = 0; i < matrizAdj.length; i++) {
                 if (matrizAdj[i].length != matrizAdj.length) {
                     new IllegalArgumentException("Número de colunas deve ser igual ao número de linhas");
                 }
                 for (int j = 0; j < matrizAdj[i].length; j++) {
-                    if (matrizAdj[i][j] > 0) {
+                    if (matrizAdj[i][j] != null && matrizAdj[i][j] != 0) {
                         this.addAresta(matrizAdj[i][j], i, j);
                     }
                 }
@@ -191,9 +195,9 @@ public class Grafo {
         StringBuilder builder = new StringBuilder("-");
 
         if (!this.getVertices().isEmpty()) {
-            float[][] matrizAdj = this.getMatrizAdjacencia();
+            Float[][] matrizAdj = this.getMatrizAdjacencia();
 
-            for (float[] aMatrizAdj : matrizAdj) {
+            for (Float[] aMatrizAdj : matrizAdj) {
                 builder.append("\n");
                 for (int j = 0; j < aMatrizAdj.length; j++) {
                     builder.append(aMatrizAdj[j]).append(((j + 1) < aMatrizAdj.length) ? ", " : "");

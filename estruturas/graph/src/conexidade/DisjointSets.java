@@ -3,6 +3,7 @@ package conexidade;
 import grafo.Aresta;
 import grafo.Grafo;
 import grafo.Vertice;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -27,12 +28,11 @@ public class DisjointSets {
             throw new IllegalArgumentException("Qualé mano, ta me zoando?? \nVai popular essas porra antes de me criar!");
 
         this.g = g;
-
         this.dS();
     }
 
     /**
-     *
+     * Executa o algorítmo
      */
     private void dS() {
         initializeSingleSource();
@@ -65,6 +65,7 @@ public class DisjointSets {
      * @param v
      * @return
      */
+    @Nullable
     private ArrayList<Vertice> getSubset(Vertice v) {
         for (ArrayList<Vertice> ar : this.s) {
             if (ar.contains(v))

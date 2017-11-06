@@ -1,6 +1,7 @@
 import busca.BreadthFirstSearch;
 import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
+import caminhamento.FloydWarshall;
 import conexidade.DisjointSets;
 import grafo.Aresta;
 import grafo.Grafo;
@@ -9,14 +10,14 @@ import grafo.Vertice;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class App {
+public class Algoritmos {
 
     /**
      *
      * @param matrizAdj
      * @return
      */
-    public static String tipoDoGrafo(int[][] matrizAdj) {
+    public static String tipoDoGrafo(Integer[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
 
         return "\n ------------ tipoDoGrafo ------------ " +
@@ -33,7 +34,7 @@ public class App {
      * @param matrizAdj
      * @return
      */
-    public static String arestasDoGrafo(int[][] matrizAdj) {
+    public static String arestasDoGrafo(Integer[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
         ArrayList<Aresta> arestas = g.getArestas();
         StringBuilder strBuilder = new StringBuilder("\n ------------ arestasDoGrafo ------------ "
@@ -53,7 +54,7 @@ public class App {
      * @param matrizAdj
      * @return
      */
-    public static String grausDoVertice(int[][] matrizAdj) {
+    public static String grausDoVertice(Integer[][] matrizAdj) {
         Grafo g = new Grafo(matrizAdj);
         ArrayList<Vertice> vertices = g.getVertices();
         ArrayList<Integer> graus = new ArrayList<>();
@@ -82,24 +83,10 @@ public class App {
     /**
      *
      * @param matrizAdj
-     * @return
-     */
-    public static String dfs(int[][] matrizAdj) {
-        Grafo g = new Grafo(matrizAdj);
-
-        StringBuilder strBuilder = new StringBuilder("\n ------------   DFS   ------------ ");
-        strBuilder.append(new DepthFirstSearch(g).toString());
-
-        return strBuilder.toString();
-    }
-
-    /**
-     *
-     * @param matrizAdj
      * @param verticeInicial
      * @return
      */
-    public static String bfs(int[][] matrizAdj, int verticeInicial) {
+    public static String bfs(Integer[][] matrizAdj, int verticeInicial) {
         Grafo g = new Grafo(matrizAdj);
 
         StringBuilder strBuilder = new StringBuilder("\n ------------   BFS   ------------ ");
@@ -108,13 +95,15 @@ public class App {
         return strBuilder.toString();
     }
 
-    public static String conjuntosDisjuntos(int[][] matrizAdj) {
-        Grafo g = new Grafo(matrizAdj);
-        DisjointSets ds = new DisjointSets(g);
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String dfs(Integer[][] matrizAdj) {
+        StringBuilder strBuilder = new StringBuilder("\n ------------   DFS   ------------ ");
 
-        StringBuilder strBuilder = new StringBuilder("\n ------------   DS   ------------ ");
-        strBuilder.append(ds.toString());
-        strBuilder.append("\n\nGrafo").append(ds.isConnected() ? " é " : " não é ").append("conexo");
+        strBuilder.append(new DepthFirstSearch(new Grafo(matrizAdj)).toString());
 
         return strBuilder.toString();
     }
@@ -125,7 +114,7 @@ public class App {
      * @param verticeInicial
      * @return
      */
-    public static String dijkstra(int[][] matrizAdj, int verticeInicial) {
+    public static String dijkstra(Integer[][] matrizAdj, int verticeInicial) {
         Grafo g = new Grafo(matrizAdj);
         new Dijkstra(g, g.getVertice(verticeInicial));
 
@@ -145,20 +134,32 @@ public class App {
         return strBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        int[][] matrizAdj = {
-                {0, 2, 0, 0, 10},
-                {0, 0, 3, 0, 7},
-                {0, 0, 0, 4, 0},
-                {0, 0, 0, 0, 0},
-                {0, 0, 8, 5, 0}};
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String floydWarshall(Integer[][] matrizAdj) {
+        StringBuilder strBuilder = new StringBuilder("\n ------------ Floyd Warshall ------------ ");
 
-//        System.out.println(tipoDoGrafo(matrizAdj));
-//        System.out.println(arestasDoGrafo(matrizAdj));
-//        System.out.println(grausDoVertice(matrizAdj));
-//        System.out.println(dfs(matrizAdj));
-//        System.out.println(bfs(matrizAdj, 0));
-//        System.out.println(dijkstra(matrizAdj, 0));
-//        System.out.println(conjuntosDisjuntos(matrizAdj));
+        strBuilder.append(new FloydWarshall(new Grafo(matrizAdj)).toString());
+
+        return  strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String conjuntosDisjuntos(Integer[][] matrizAdj) {
+        Grafo g = new Grafo(matrizAdj);
+        DisjointSets ds = new DisjointSets(g);
+
+        StringBuilder strBuilder = new StringBuilder("\n ------------   DS   ------------ ");
+        strBuilder.append(ds.toString());
+        strBuilder.append("\n\nGrafo").append(ds.isConnected() ? " é " : " não é ").append("conexo");
+
+        return strBuilder.toString();
     }
 }
