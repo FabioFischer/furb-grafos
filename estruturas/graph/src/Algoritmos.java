@@ -2,6 +2,7 @@ import busca.BreadthFirstSearch;
 import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
 import caminhamento.FloydWarshall;
+import ciclosEulerianos.Fleury;
 import conexidade.DisjointSets;
 import grafo.Aresta;
 import grafo.Grafo;
@@ -159,6 +160,36 @@ public class Algoritmos {
         StringBuilder strBuilder = new StringBuilder("\n ------------   DS   ------------ ");
         strBuilder.append(ds.toString());
         strBuilder.append("\n\nGrafo").append(ds.isConnected() ? " é " : " não é ").append("conexo");
+
+        return strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String fleury(Integer[][] matrizAdj) {
+        Grafo g = new Grafo(matrizAdj);
+        Fleury f = new Fleury(g);
+
+        StringBuilder strBuilder = new StringBuilder("\n ------------   FLEURY   ------------ ");
+        strBuilder.append(f.toString());
+
+        return strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String fleury(Integer[][] matrizAdj, int verticeInicial) {
+        Grafo g = new Grafo(matrizAdj);
+        Fleury f = new Fleury(g, g.getVertice(verticeInicial));
+
+        StringBuilder strBuilder = new StringBuilder("\n ------------   FLEURY   ------------ ");
+        strBuilder.append(f.toString());
 
         return strBuilder.toString();
     }

@@ -1,11 +1,14 @@
 public class Cenarios {
     public static void main(String[] args) {
         Integer[][] matrizAdj = {
-                {0, 3, 8, null, -4},
-                {null, 0, null, 1, 7},
-                {null, 4, 0, null, null},
-                {2, null, -5, 0, null},
-                {null, null, null, 6, 0}};
+                {0, null, null, 1, 1, null, null},
+                {null, 0, null, null, 1, 1, null},
+                {null, null, 0, null, null, 1, 1},
+                {1, null, null, 0, 1, null, null},
+                {1, 1, null, 1, 0, 1, null},
+                {null, 1, 1, null, 1, 0, 1},
+                {null, null, 1, null, null, 1, 0}};
+
 
 //        System.out.println(Algoritmos.tipoDoGrafo(matrizAdj));
 //        System.out.println(Algoritmos.arestasDoGrafo(matrizAdj));
@@ -15,5 +18,7 @@ public class Cenarios {
 //        System.out.println(Algoritmos.dijkstra(matrizAdj, 0));
 //        System.out.println(Algoritmos.floydWarshall(matrizAdj));
 //        System.out.println(Algoritmos.conjuntosDisjuntos(matrizAdj));
+//        System.out.println(Algoritmos.fleury(matrizAdj));
+        System.out.println(Algoritmos.fleury(matrizAdj, 5));
     }
 }

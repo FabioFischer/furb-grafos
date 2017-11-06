@@ -163,7 +163,7 @@ public class Grafo {
         return this.getAresta(this.getVertice(origem), this.getVertice(destino));
     }
 
-    private Aresta getAresta(Vertice origem, Vertice destino) {
+    public Aresta getAresta(Vertice origem, Vertice destino) {
         if (origem != null && destino != null) {
             for (Aresta a : origem.getArestas()) {
                 if (a.getOrigem() == origem && a.getDestino() == destino) return a;

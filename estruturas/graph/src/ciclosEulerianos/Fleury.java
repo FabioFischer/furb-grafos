@@ -5,7 +5,6 @@ import grafo.Grafo;
 import grafo.Vertice;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -20,9 +19,19 @@ public class Fleury {
     private Grafo g;
 
     /**
+     * Pilha dos vértices explorados
+     */
+    private Stack<Vertice> Q;
+
+    /**
      * Lista de arestas pendentes
      */
     private ArrayList<Aresta> A;
+
+    /**
+     * Vertice de origem do algorítmo
+     */
+    private Vertice v;
 
     /**
      * Custo total de percorrimento do grafo
@@ -37,10 +46,39 @@ public class Fleury {
         if (g == null) {
             throw new IllegalArgumentException("Qualé mano, ta me zoando?? \nVai popular essas porra antes de me criar!");
         }
-        this.g = g;
-        this.A = g.getArestas();
+        this.initializeSingleSource(g, g.getVertice(0));
+        this.execute();
+    }
 
-        execute(g.getVertice(0));
+    /**
+     *
+     * @param g
+     * @param v
+     */
+    public Fleury(Grafo g, Vertice v) {
+        if (g == null || v == null) {
+            throw new IllegalArgumentException("Qualé mano, ta me zoando?? \nVai popular essas porra antes de me criar!");
+        }
+        this.initializeSingleSource(g, v);
+        this.execute();
+    }
+
+    /**
+     * Executa o algorítmo
+     */
+    private void execute() {
+        Aresta a = getAresta(this.v);
+
+        if (a != null) {
+            do {
+                this.d += a.getValor();
+                this.Q.push(a.getDestino());
+            } while ((a = this.getAresta(a.getDestino())) != null);
+        }
+
+        if (!isSemiEulerian()) {
+            this.d = 0f;
+        }
     }
 
     /**
@@ -50,24 +88,6 @@ public class Fleury {
      * Regra II: se aparecer algum vértice isolado, apague-o também
      * Regra III: passe por uma ponte somente se não houver outra alternativa
      *
-     * @param v
-     */
-    private void execute(Vertice v) {
-        Aresta a = getAresta(v);
-
-        if (a != null) {
-            do {
-                this.d += a.getValor();
-            } while ((a = this.getAresta(a.getDestino())) != null);
-        }
-
-        if (!isEulerian()) {
-            this.d = 0f;
-        }
-    }
-
-    /**
-     *
      * @param origem
      * @return
      */
@@ -76,7 +96,7 @@ public class Fleury {
 
         if (!this.g.getVertices().isEmpty()) {
             for (Aresta a : origem.getArestas()) {
-                if (!arestas.contains(a) && this.A.contains(a))
+                if (!arestas.contains(a) && this.A.contains(a) && a.getOrigem() == origem)
                     arestas.add(a);
             }
         }
@@ -95,31 +115,75 @@ public class Fleury {
         if (r != null) {
             // Lista de arestas que formam uma ponte.
             Stack<Aresta> p = new Stack<>();
+
+            //Itera todas as arestas adjascentes a origem que ainda estão na lista de arestas do algorítmo (A)
             for (Aresta a : r) {
-                if (s != null) {
+                if (s == null) {
                     // Verifica se aresta 'a' é uma ponte
-                    if (!Collections.disjoint(origem.getAdjacencias(), a.getDestino().getAdjacencias())) {
+                    if (isUniquelyConnected(origem, a.getDestino(), a)) {
                         p.push(a);
                     } else {
                         s = a;
                     }
                 }
             }
-            s = (s == null) ? p.pop() : s;
-
-            if (s != null) {
+            if (s == null)
+                s = p.size() > 0 ? p.pop() : null;
+            if (s != null)
+                // Se o grafo não é dirigido, deve remover as duas referências da aresta: 'origem x destino' e 'destino x origem'
+                if (!this.g.eDirigido())
+                    this.A.remove(g.getAresta(s.getDestino(), s.getOrigem()));
                 this.A.remove(s);
-            }
         }
         return s;
     }
 
     /**
      *
+     * @param i
+     * @param u
+     * @param a
      * @return
      */
-    private boolean isEulerian() {
-        return this.A != null && !this.A.isEmpty();
+    private boolean isUniquelyConnected(Vertice i, Vertice u, Aresta a) {
+        return !Collections.disjoint(getDisjointAdjascency(i, a), getDisjointAdjascency(u, a));
+    }
+
+    /**
+     *
+     * @param v
+     * @param s
+     * @return
+     */
+    private ArrayList<Vertice> getDisjointAdjascency(Vertice v, Aresta s) {
+        ArrayList<Vertice> adj = new ArrayList<>();
+
+        for (Aresta a : v.getArestas()) {
+            if (a != s && a.getOrigem() == v) {
+                adj.add(a.getDestino());
+            }
+        }
+        return adj;
+    }
+
+    /**
+     *
+     */
+    private void initializeSingleSource(Grafo g, Vertice v) {
+        this.g = g;
+        this.Q = new Stack<>();
+        this.A = g.getArestas();
+        this.v = v;
+
+        this.Q.push(v);
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean isSemiEulerian() {
+        return this.A != null && this.A.isEmpty();
     }
 
     /**
@@ -136,7 +200,17 @@ public class Fleury {
      */
     @Override
     public String toString() {
-        StringBuilder strBuilder = new StringBuilder("");
+        StringBuilder strBuilder = new StringBuilder();
+
+        if (this.isSemiEulerian()) {
+            if (this.v == Q.pop()) {
+                strBuilder.append("\n\tGrafo é euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+            } else {
+                strBuilder.append("\n\tGrafo é semi-euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+            }
+        } else {
+            strBuilder.append("\n\tGrafo não é euleriano");
+        }
 
         return strBuilder.toString();
     }
