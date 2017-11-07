@@ -52,6 +52,6 @@ public class Aresta implements Comparable{
 
     @Override
     public String toString() {
-        return "Valor: " + this.getValor() + " | origem: " + this.getOrigem().getValor() + " destino: " + this.getDestino().getValor();
+        return "Valor: " + this.getValor() + " | origem: " + this.getOrigem().getId() + " destino: " + this.getDestino().getId();
     }
 }

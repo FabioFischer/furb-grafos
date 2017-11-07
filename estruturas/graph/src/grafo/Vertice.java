@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Vertice implements Comparable{
     // ID do vertice
-    private int valor;
+    private int id;
 
     // Conjunto de arestas do vértice
     private List<Aresta> arestas;
@@ -26,7 +26,7 @@ public class Vertice implements Comparable{
 
     public Vertice(int valor) {
         this.setArestas(new ArrayList<>());
-        this.setValor(valor);
+        this.setId(valor);
     }
 
     public ArrayList<Vertice> getAdjacencias() {
@@ -56,12 +56,12 @@ public class Vertice implements Comparable{
         return this.getAdjacencias().size();
     }
 
-    public int getValor() {
-        return valor;
+    public int getId() {
+        return id;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Aresta> getArestas() {
@@ -114,7 +114,7 @@ public class Vertice implements Comparable{
 
     @Override
     public String toString() {
-        return "" + this.getValor();
+        return "" + this.getId();
     }
 
     @Override

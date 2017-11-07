@@ -2,7 +2,8 @@ import busca.BreadthFirstSearch;
 import busca.DepthFirstSearch;
 import caminhamento.Dijkstra;
 import caminhamento.FloydWarshall;
-import ciclosEulerianos.Fleury;
+import ciclos.euler.ChinesePostman;
+import ciclos.euler.Fleury;
 import conexidade.DisjointSets;
 import grafo.Aresta;
 import grafo.Grafo;
@@ -64,7 +65,7 @@ public class Algoritmos {
 
         if (!vertices.isEmpty()) {
             for (Vertice v : vertices) {
-                strBuilder.append("\nVertice ").append(v.getValor()).append(", grau ").append(v.getGrau());
+                strBuilder.append("\nVertice ").append(v.getId()).append(", grau ").append(v.getGrau());
                 graus.add(v.getGrau());
             }
 
@@ -123,8 +124,8 @@ public class Algoritmos {
         String vertices = "", pais = "", distancias = "";
 
         for (Vertice v : g.getVertices()) {
-            vertices += v.getValor() + "\t\t";
-            pais += (v.getPai() == null) ? "nil\t\t" : v.getPai().getValor() + "\t\t";
+            vertices += v.getId() + "\t\t";
+            pais += (v.getPai() == null) ? "nil\t\t" : v.getPai().getId() + "\t\t";
             distancias += (v.getPai() == null) ? "-\t\t" : v.getDistancia() + "\t\t";
         }
 
@@ -190,6 +191,19 @@ public class Algoritmos {
 
         StringBuilder strBuilder = new StringBuilder("\n ------------   FLEURY   ------------ ");
         strBuilder.append(f.toString());
+
+        return strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String carteiroChines(Integer[][] matrizAdj) {
+        StringBuilder strBuilder = new StringBuilder("\n ------------ Carteiro Chines ------------ ");
+
+        strBuilder.append(new ChinesePostman(new Grafo(matrizAdj)).toString());
 
         return strBuilder.toString();
     }

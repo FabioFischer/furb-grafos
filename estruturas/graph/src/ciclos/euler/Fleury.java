@@ -1,4 +1,4 @@
-package ciclosEulerianos;
+package ciclos.euler;
 
 import grafo.Aresta;
 import grafo.Grafo;
@@ -182,8 +182,16 @@ public class Fleury {
      *
      * @return
      */
-    private boolean isSemiEulerian() {
-        return this.A != null && this.A.isEmpty();
+    public boolean isSemiEulerian() {
+        return this.A != null && this.A.isEmpty() && this.v != Q.peek();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isEulerian() {
+        return this.A != null && this.A.isEmpty() && this.v == Q.peek();
     }
 
     /**
@@ -202,14 +210,12 @@ public class Fleury {
     public String toString() {
         StringBuilder strBuilder = new StringBuilder();
 
-        if (this.isSemiEulerian()) {
-            if (this.v == Q.peek()) {
-                strBuilder.append("\n\tGrafo é euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
-                strBuilder.append("\n\tCaminho: " + Q.toString());
-            } else {
-                strBuilder.append("\n\tGrafo é semi-euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
-                strBuilder.append("\n\tCaminho: " + Q.toString());
-            }
+        if (this.isEulerian()) {
+            strBuilder.append("\n\tGrafo é euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+            strBuilder.append("\n\tCaminho: " + Q.toString());
+        } else if (this.isSemiEulerian()) {
+            strBuilder.append("\n\tGrafo é semi-euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
+            strBuilder.append("\n\tCaminho: " + Q.toString());
         } else {
             strBuilder.append("\n\tGrafo não é euleriano");
         }

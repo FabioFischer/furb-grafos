@@ -175,7 +175,7 @@ public class Grafo {
     public Vertice getVertice(int valor) {
         if (!this.getVertices().isEmpty()) {
             for (Vertice v : this.getVertices()) {
-                if (v.getValor() == valor)
+                if (v.getId() == valor)
                     return v;
             }
         }

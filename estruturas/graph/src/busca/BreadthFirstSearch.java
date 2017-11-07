@@ -78,7 +78,7 @@ public class BreadthFirstSearch {
         StringBuilder strBuilder = new StringBuilder();
 
         for (Vertice v : this.g.getVertices()) {
-            strBuilder.append("\nv: " + v.getValor() + ", Cor: " + v.getEstado() + ", Tempo Descobrimento: " + v.getDescobrimento());
+            strBuilder.append("\nv: " + v.getId() + ", Cor: " + v.getEstado() + ", Tempo Descobrimento: " + v.getDescobrimento());
         }
 
         return strBuilder.toString();

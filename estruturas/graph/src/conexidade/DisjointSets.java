@@ -107,7 +107,7 @@ public class DisjointSets {
             str.append("\nsubconjunto ").append(id).append(":  ");
 
             for (Vertice v : ar) {
-                str.append(v.getValor()).append(", ");
+                str.append(v.getId()).append(", ");
             }
 
             id++;

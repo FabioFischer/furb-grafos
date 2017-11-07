@@ -96,7 +96,7 @@ public class DepthFirstSearch {
         StringBuilder strBuilder = new StringBuilder();
 
         for (Vertice v : this.g.getVertices()) {
-            strBuilder.append("\nv: " + v.getValor() + ", Cor: " + v.getEstado() + ", Tempo Abertura: " + v.getDescobrimento() + ", Tempo Fechamento: " + v.getFechamento());
+            strBuilder.append("\nv: " + v.getId() + ", Cor: " + v.getEstado() + ", Tempo Abertura: " + v.getDescobrimento() + ", Tempo Fechamento: " + v.getFechamento());
         }
 
         return strBuilder.toString();
