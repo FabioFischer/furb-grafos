@@ -76,9 +76,9 @@ public class Fleury {
             } while ((a = this.getAresta(a.getDestino())) != null);
         }
 
-        if (!isSemiEulerian()) {
-            this.d = 0f;
-        }
+//        if (!isSemiEulerian()) {
+//            this.d = 0f;
+//        }
     }
 
     /**
@@ -217,7 +217,7 @@ public class Fleury {
             strBuilder.append("\n\tGrafo é semi-euleriano\n\tCusto total: ").append(this.getCustoTotal().toString());
             strBuilder.append("\n\tCaminho: " + Q.toString());
         } else {
-            strBuilder.append("\n\tGrafo não é euleriano");
+            strBuilder.append("\n\tGrafo não é euleriano\n\tCusto Total: ").append(this.getCustoTotal().toString());
         }
 
         return strBuilder.toString();

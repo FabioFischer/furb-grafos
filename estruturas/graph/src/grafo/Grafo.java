@@ -134,18 +134,19 @@ public class Grafo {
         }
     }
 
-    private void addAresta(int valor, int origem, int destino) {
+    private void addAresta(float valor, int origem, int destino) {
         this.addAresta(valor, this.verificaVertice(origem), this.verificaVertice(destino));
     }
 
-    public void addAresta(int valor, Vertice origem, Vertice destino) {
-        Aresta aresta = null;
+    public void addAresta(float valor, Vertice origem, Vertice destino) {
+//        Aresta aresta = null;
 
-        for (Aresta a : origem.getArestas()) {
-            if (a.getOrigem() == origem && a.getDestino() == destino) aresta = a;
-        }
-
-        if (aresta == null) new Aresta(valor, origem, destino);
+//        for (Aresta a : origem.getArestas()) {
+//            if (a.getOrigem() == origem && a.getDestino() == destino && a.getValor() == valor) aresta = a;
+//        }
+//
+//        if (aresta == null)
+            new Aresta(valor, origem, destino);
     }
 
     private Vertice verificaVertice(int valor) {
