@@ -28,13 +28,13 @@ public class DisjointSets {
             throw new IllegalArgumentException("Qualé mano, ta me zoando?? \nVai popular essas porra antes de me criar!");
 
         this.g = g;
-        this.dS();
+        this.disjointSets();
     }
 
     /**
      * Executa o algorítmo
      */
-    private void dS() {
+    private void disjointSets() {
         initializeSingleSource();
 
         for (Aresta a : this.g.getArestas()) {
@@ -42,7 +42,7 @@ public class DisjointSets {
             ArrayList<Vertice> ar2 = getSubset(a.getDestino());
 
             if (ar1 != null && ar2 != null && ar1 != ar2) {
-                joinLists(ar1, ar2);
+                union(ar1, ar2);
             }
         }
     }
@@ -80,7 +80,7 @@ public class DisjointSets {
      * @param ar1
      * @param ar2
      */
-    private void joinLists(ArrayList<Vertice> ar1, ArrayList<Vertice> ar2) {
+    private void union(ArrayList<Vertice> ar1, ArrayList<Vertice> ar2) {
         for (Vertice v : ar2) {
             if (!ar1.contains(v)) {
                 ar1.add(v);
@@ -109,7 +109,6 @@ public class DisjointSets {
             for (Vertice v : ar) {
                 str.append(v.getId()).append(", ");
             }
-
             id++;
         }
 

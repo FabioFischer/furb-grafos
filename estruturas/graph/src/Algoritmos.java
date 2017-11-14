@@ -4,6 +4,7 @@ import caminhamento.Dijkstra;
 import caminhamento.FloydWarshall;
 import ciclos.euler.ChinesePostman;
 import ciclos.euler.Fleury;
+import ciclos.hamilton.RobertsFlores;
 import conexidade.DisjointSets;
 import grafo.Aresta;
 import grafo.Grafo;
@@ -204,6 +205,19 @@ public class Algoritmos {
         StringBuilder strBuilder = new StringBuilder("\n ------------ Carteiro Chines ------------ ");
 
         strBuilder.append(new ChinesePostman(new Grafo(matrizAdj)).toString());
+
+        return strBuilder.toString();
+    }
+
+    /**
+     *
+     * @param matrizAdj
+     * @return
+     */
+    public static String robertsEFlores(Integer[][] matrizAdj) {
+        StringBuilder strBuilder = new StringBuilder("\n ------------ Roberts e Flores ------------ ");
+
+        strBuilder.append(new RobertsFlores(new Grafo(matrizAdj)).toString());
 
         return strBuilder.toString();
     }

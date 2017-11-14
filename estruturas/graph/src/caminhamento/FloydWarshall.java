@@ -45,7 +45,7 @@ public class FloydWarshall {
         }
         this.g = g;
         this.initializeSingleSource();
-        this.floydW();
+        this.floydWarshall();
     }
 
     /**
@@ -62,7 +62,7 @@ public class FloydWarshall {
      *          R[i][j] =   se Dij <= Dik + Dkj,            Rij
      *                      se Dij > Dik + Dkj,             Rkj
      */
-    private void floydW() {
+    private void floydWarshall() {
         for(int i = 0; i < n ; i++) {
             for (int j = 0; j < n; j++) {
                 D[i][j] = (W[i][j] != null) ? W[i][j] : Float.MAX_VALUE;
